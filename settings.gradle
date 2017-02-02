@@ -1,0 +1,14 @@
+def String[] modules = [        
+        'web'
+]
+
+include modules
+
+modules.each { name ->
+    def p = findProject(":${name}")
+    def fullName = name.replaceAll('/', '')
+    p.name = "echodata-${fullName}"
+    p.buildFileName = "${fullName}.gradle"
+    p.projectDir = new File(settingsDir, "modules/${name}");
+}
+

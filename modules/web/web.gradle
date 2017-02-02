@@ -1,0 +1,73 @@
+apply plugin: 'war'
+
+
+configurations {
+    gwtCompile
+}
+
+ext.gwtVersion = '2.8.0'
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    compile "com.google.gwt:gwt-user:$gwtVersion",
+            "com.google.gwt:gwt-dev:$gwtVersion"
+
+    gwtCompile "com.google.gwt:gwt-user:$gwtVersion",
+            "com.google.gwt:gwt-dev:$gwtVersion"
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/webapp'
+        }
+    }
+}
+
+ext.gwtBuildDir = new File("${projectDir}/src/main/webapp")
+
+
+task compileGwt(dependsOn: classes, type: JavaExec) {
+
+    classpath {
+        [
+                sourceSets.main.java.srcDirs,
+                sourceSets.main.output.resourcesDir,
+                sourceSets.main.output.classesDir
+        ] + configurations.gwtCompile
+    }
+
+    main = 'com.google.gwt.dev.Compiler'
+
+    args =
+            [
+                    '-war', gwtBuildDir
+            ]
+
+    args('ru.dzhinn.gwt.Test2')
+}
+
+
+task gwtDevMode(type: JavaExec) {
+    ext.gwtModules = ['ru.dzhinn.gwt.Test2']
+
+    main = 'com.google.gwt.dev.DevMode'
+
+    classpath {
+        [
+                sourceSets.main.java.srcDirs,
+                sourceSets.main.output.resourcesDir,
+                sourceSets.main.output.classesDir
+        ] + configurations.gwtCompile
+    }
+
+    args =
+            [
+//                    '-noserver',
+//                    '-startupUrl',
+//                    'http://localhost:8080/',
+                    '-war', gwtBuildDir
+            ]
+    args(gwtModules)
+}
