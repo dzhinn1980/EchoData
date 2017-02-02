@@ -6,15 +6,18 @@ configurations {
 }
 
 ext.gwtVersion = '2.8.0'
+ext.gwtpVersion = '1.6'
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 
     compile "com.google.gwt:gwt-user:$gwtVersion",
-            "com.google.gwt:gwt-dev:$gwtVersion"
+            "com.google.gwt:gwt-dev:$gwtVersion",
+            "com.gwtplatform:gwtp-mvp-client:$gwtpVersion"
 
     gwtCompile "com.google.gwt:gwt-user:$gwtVersion",
-            "com.google.gwt:gwt-dev:$gwtVersion"
+            "com.google.gwt:gwt-dev:$gwtVersion",
+            "com.gwtplatform:gwtp-mvp-client:$gwtpVersion"
 }
 
 sourceSets {
@@ -45,12 +48,12 @@ task compileGwt(dependsOn: classes, type: JavaExec) {
                     '-war', gwtBuildDir
             ]
 
-    args('ru.dzhinn.gwt.Test2')
+    args('ru.dzhinn.echodata.web.gwt.EchoData.gwt.EchoData')
 }
 
 
 task gwtDevMode(type: JavaExec) {
-    ext.gwtModules = ['ru.dzhinn.gwt.Test2']
+    ext.gwtModules = ['ru.dzhinn.echodata.web.gwt.EchoData.gwt.EchoData']
 
     main = 'com.google.gwt.dev.DevMode'
 
