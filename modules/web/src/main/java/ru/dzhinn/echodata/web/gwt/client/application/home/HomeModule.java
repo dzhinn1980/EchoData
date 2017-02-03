@@ -1,4 +1,4 @@
-package ru.dzhinn.echodata.web.gwt.EchoData.gwt.client.application.home;
+package ru.dzhinn.echodata.web.gwt.client.application.home;
 
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 

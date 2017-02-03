@@ -28,7 +28,7 @@ sourceSets {
     }
 }
 
-ext.gwtBuildDir = new File("${projectDir}/src/main/webapp")
+ext.gwtBuildDir = "${project.buildDir}/gwt-build"
 
 
 task compileGwt(dependsOn: classes, type: JavaExec) {
@@ -48,12 +48,14 @@ task compileGwt(dependsOn: classes, type: JavaExec) {
                     '-war', gwtBuildDir
             ]
 
-    args('ru.dzhinn.echodata.web.gwt.EchoData.gwt.EchoData')
+    args('ru.dzhinn.echodata.web.gwt.EchoData')
+//    args('ru.dzhinn.echodata.web.gwt.gwtp.Gwtp')
+
 }
 
 
 task gwtDevMode(type: JavaExec) {
-    ext.gwtModules = ['ru.dzhinn.echodata.web.gwt.EchoData.gwt.EchoData']
+    ext.gwtModules = ['ru.dzhinn.echodata.web.gwt.EchoData']
 
     main = 'com.google.gwt.dev.DevMode'
 
@@ -65,12 +67,74 @@ task gwtDevMode(type: JavaExec) {
         ] + configurations.gwtCompile
     }
 
+    def webappDir = new File(projectDir, 'src/main/webapp')
+
     args =
             [
 //                    '-noserver',
 //                    '-startupUrl',
 //                    'http://localhost:8080/',
-                    '-war', gwtBuildDir
+                    '-war', webappDir
             ]
     args(gwtModules)
+}
+
+
+task inplace << {
+//    List<File> webInfLibFiles = []
+//    configurations.compile.each { libFile ->
+//        if (!configurations.providedCompile.contains(libFile) && !configurations.providedRuntime.contains(libFile)) {
+//            webInfLibFiles.add(libFile)
+//        }
+//    }
+
+    def webappDir = new File(projectDir, 'src/main/webapp')
+//    def classesDir = new File(webappDir, 'WEB-INF/classes')
+//    def libDir = new File(webappDir, 'WEB-INF/lib')
+//    classesDir.mkdir()
+//    libDir.mkdir()
+
+//    task copyLibs(type: Copy) {
+//        from webInfLibFiles
+//        into libDir
+//    }
+//    task copyClasses(type: Copy) {
+//        from sourceSets.main.output.classesDir
+//        from sourceSets.main.output.resourcesDir
+//        into classesDir
+//    }
+    task copyGwt(type: Copy) {
+        from gwtBuildDir
+        into webappDir
+    }
+
+//    copyLibs.execute()
+//    copyClasses.execute()
+    copyGwt.execute()
+}
+
+clean.doLast {
+    def webappDir = new File(projectDir, 'src/main/webapp')
+
+    def unitCacheDir = new File(projectDir, 'gwt-unitCache')
+    def classesDir = new File(webappDir, 'WEB-INF/classes')
+    def libDir = new File(webappDir, 'WEB-INF/lib')
+    def deployDir = new File(webappDir, 'WEB-INF/deploy')
+    def moduleDir = new File(webappDir, 'echodata')
+//    def adminModuleDir = new File(webappDir, 'admingwt')
+    def manifest = new File(webappDir, 'META-INF/MANIFEST.MF')
+
+    def dirsToRemove = [unitCacheDir, classesDir, libDir, deployDir, moduleDir, manifest];
+
+    dirsToRemove.each { file ->
+        if (file.exists()) {
+            if (file.isDirectory()) {
+                println "Deleting $file recursively..."
+                file.deleteDir();
+            } else {
+                println "Deleting $file"
+                file.delete();
+            }
+        }
+    }
 }

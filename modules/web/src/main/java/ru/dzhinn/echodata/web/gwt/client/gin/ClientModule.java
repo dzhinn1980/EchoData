@@ -1,9 +1,9 @@
-package ru.dzhinn.echodata.web.gwt.EchoData.gwt.client.gin;
+package ru.dzhinn.echodata.web.gwt.client.gin;
 
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import com.gwtplatform.mvp.client.gin.DefaultModule;
-import ru.dzhinn.echodata.web.gwt.EchoData.gwt.client.application.ApplicationModule;
-import ru.dzhinn.echodata.web.gwt.EchoData.gwt.client.place.NameTokens;
+import ru.dzhinn.echodata.web.gwt.client.application.ApplicationModule;
+import ru.dzhinn.echodata.web.gwt.client.place.NameTokens;
 
 /**
  * Created by A.Dzhioev on 02.02.2017.

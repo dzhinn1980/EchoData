@@ -1,4 +1,4 @@
-package ru.dzhinn.echodata.web.gwt.EchoData.gwt.client.application;
+package ru.dzhinn.echodata.web.gwt.client.application;
 
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;

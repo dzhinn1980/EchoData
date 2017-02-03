@@ -1,4 +1,4 @@
-package ru.dzhinn.echodata.web.gwt.EchoData.gwt.client.application;
+package ru.dzhinn.echodata.web.gwt.client.application;
 
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;

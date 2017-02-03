@@ -1,4 +1,4 @@
-package ru.dzhinn.echodata.web.gwt.EchoData.gwt.client.place;
+package ru.dzhinn.echodata.web.gwt.client.place;
 
 /**
  * Created by A.Dzhioev on 02.02.2017.

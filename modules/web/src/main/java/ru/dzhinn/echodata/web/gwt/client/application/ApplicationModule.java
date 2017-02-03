@@ -1,7 +1,7 @@
-package ru.dzhinn.echodata.web.gwt.EchoData.gwt.client.application;
+package ru.dzhinn.echodata.web.gwt.client.application;
 
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
-import ru.dzhinn.echodata.web.gwt.EchoData.gwt.client.application.home.HomeModule;
+import ru.dzhinn.echodata.web.gwt.client.application.home.HomeModule;
 
 public class ApplicationModule extends AbstractPresenterModule {
     @Override
