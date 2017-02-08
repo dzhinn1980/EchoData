@@ -25,7 +25,7 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
             EventBus eventBus,
             MyView view,
             MyProxy proxy) {
-        super(eventBus, view, proxy, RevealType.Root);
+        super(eventBus, view, proxy, RevealType.RootLayout);
 
     }
 

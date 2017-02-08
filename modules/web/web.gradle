@@ -49,13 +49,16 @@ task compileGwt(dependsOn: classes, type: JavaExec) {
             ]
 
     args('ru.dzhinn.echodata.web.gwt.EchoData')
-//    args('ru.dzhinn.echodata.web.gwt.gwtp.Gwtp')
+//    args('ru.dzhinn.mail.web.gwt.Mail')
 
 }
 
 
 task gwtDevMode(type: JavaExec) {
-    ext.gwtModules = ['ru.dzhinn.echodata.web.gwt.EchoData']
+    ext.gwtModules = [
+            'ru.dzhinn.echodata.web.gwt.EchoData'
+//            'ru.dzhinn.mail.web.gwt.Mail'
+    ]
 
     main = 'com.google.gwt.dev.DevMode'
 

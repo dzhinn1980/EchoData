@@ -1,0 +1,74 @@
+<ui:UiBinder ui:generateFormat="com.google.gwt.i18n.rebind.format.PropertiesFormat"
+             ui:generateKeys="com.google.gwt.i18n.server.keygen.FullyQualifiedMethodNameKeyGenerator"
+             ui:generateLocales="default"
+        xmlns:ui='urn:ui:com.google.gwt.uibinder'
+        xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:with type=" ru.dzhinn.echodata.web.gwt.client.resources.EchoDataNavigationMessages" field="messages"/>
+
+
+    <ui:style>
+        .shortcuts {
+            border-left: 1px solid #999;
+            border-right: 1px solid #999;
+            border-bottom: 1px solid #999;
+        }
+
+        .stackHeader {
+            gwt-sprite: "gradient";
+            background-color: #b4b6bc;
+            cursor: pointer;
+            text-shadow: rgba(255, 255, 255, 1) 0 1px 1px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #000;
+            padding: 0.7em 0.5em 0 0.6em;
+            border-top: 1px solid #888;
+        }
+
+        .mailboxesIcon {
+            gwt-sprite: "mailboxesgroup";
+            float: left;
+        }
+
+        .tasksIcon {
+            gwt-sprite: "tasksgroup";
+            float: left;
+        }
+
+        .contactsIcon {
+            gwt-sprite: "contactsgroup";
+            float: left;
+        }
+
+    </ui:style>
+
+
+    <g:StackLayoutPanel unit='EM'>
+        <g:stack>
+            <!--<g:header size='3'>{messages.patientListHeader}</g:header>-->
+            <g:customHeader size='3'>
+                <g:LayoutPanel>
+                    <g:layer>
+                        <g:Label text="{messages.patientListHeader}"/>
+                        <!--<g:TextBox/>-->
+                    </g:layer>
+                </g:LayoutPanel>
+
+
+            </g:customHeader>
+            <g:ScrollPanel ui:field="patientListPanel">
+                <!--<g:layer>-->
+                    <!--<g:Label>Lable</g:Label>-->
+                <!--</g:layer>-->
+            </g:ScrollPanel>
+
+        </g:stack>
+        <g:stack>
+            <g:customHeader size='3'>
+                <g:Label text="{messages.templateListHeader}"/>
+            </g:customHeader>
+            <g:Label>baker</g:Label>
+        </g:stack>
+    </g:StackLayoutPanel>
+</ui:UiBinder>
