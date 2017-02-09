@@ -5,6 +5,8 @@ import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.*;
 import com.gwtplatform.mvp.client.ViewImpl;
+import ru.dzhinn.echodata.web.gwt.client.resources.AppResources;
+import ru.dzhinn.echodata.web.gwt.client.widget.navigation.EchoDataNavigation;
 
 import javax.inject.Inject;
 
@@ -27,13 +29,22 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     @UiField
     FlowPanel contentPanel;
 
+    AppResources appResources;
+
     @UiFactory
     SplitLayoutPanel makeCricketScores() { // method name is insignificant
         return new SplitLayoutPanel(5);
     }
 
+    @UiFactory
+    EchoDataNavigation getEchoDataNavigation() { // method name is insignificant
+        return new EchoDataNavigation(appResources);
+    }
+
     @Inject
-    ApplicationView(Binder uiBinder) {
+    ApplicationView(Binder uiBinder, AppResources appResources) {
+        this.appResources = appResources;
+
         container = uiBinder.createAndBindUi(this);
 
         topPanel.add(new Label("topPanel"));

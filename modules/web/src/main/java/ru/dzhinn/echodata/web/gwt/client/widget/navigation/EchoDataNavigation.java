@@ -1,12 +1,22 @@
 package ru.dzhinn.echodata.web.gwt.client.widget.navigation;
 
+import com.google.gwt.cell.client.IconCellDecorator;
 import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ImageResource;
+import com.google.gwt.safehtml.shared.SafeHtml;
+import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiConstructor;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellList;
+import com.google.gwt.user.cellview.client.CellTree;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
+import com.google.gwt.view.client.ListDataProvider;
+import com.google.gwt.view.client.SelectionChangeEvent;
+import com.google.gwt.view.client.SingleSelectionModel;
+import com.google.gwt.view.client.TreeViewModel;
 import com.google.inject.Inject;
 import ru.dzhinn.echodata.web.gwt.client.resources.AppResources;
 import ru.dzhinn.echodata.web.gwt.client.widget.navigation.render.ContactCell;
@@ -24,6 +34,10 @@ public class EchoDataNavigation extends Composite {
 
     @UiField
     ScrollPanel patientListPanel;
+    @UiField
+    ScrollPanel templateListPanel;
+//    @UiField
+//    Button searchPatientButton;
 
     private static final List<ContactInfo> Contacts = Arrays.asList(
             new ContactInfo("fio1", "adr1"),
@@ -46,66 +60,107 @@ public class EchoDataNavigation extends Composite {
             new ContactInfo("fio19", "adr19")
     );
 
-//    @Inject
-//    AppResources appResources;
+    @UiField(provided = true)
+    AppResources appResources;
 
-    AppResources appResources = GWT.create(AppResources.class);
+    final SingleSelectionModel<String> selectionModel = new SingleSelectionModel<String>();
 
-    EchoDataNavigation() {
+    @Inject
+    public EchoDataNavigation(AppResources appResources) {
+        this.appResources = appResources;
 
         initWidget(binder.createAndBindUi(this));
 
-//        ImageResource maleSilhouette = AppResources.INSTANCE.maleSilhouette();
         ImageResource maleSilhouette = appResources.maleSilhouette();
         ContactCell contactCell = new ContactCell(maleSilhouette);
-//        ContactCell contactCell = new ContactCell();
-
-        // Create a CellList that uses the cell.
         CellList<ContactInfo> cellList = new CellList<ContactInfo>(contactCell);
-
-        // Set the total row count. This isn't strictly necessary, but it affects
-        // paging calculations, so its good habit to keep the row count up to date.
         cellList.setRowCount(Contacts.size(), true);
-
-        // Push the data into the widget.
         cellList.setRowData(0, Contacts);
 
         patientListPanel.add(cellList);
+
+//        Image image = appResources.searchIcon();
+//        searchPatientButton.getElement().appendChild(appResources.searchIcon().geE);
+
+//        setTemplateTree();
+        setTemplateCellTree();
     }
 
-//    static class ContactCell extends AbstractCell<ContactInfo> {
-//
-//        /**
-//         * The html of the image used for contacts.
-//         */
-//        private final String imageHtml;
-//
-//        public ContactCell(ImageResource image) {
-//            this.imageHtml = AbstractImagePrototype.create(image).getHTML();
-//        }
-//
-//        @Override
-//        public void render(Context context, ContactInfo value, SafeHtmlBuilder sb) {
-//            // Value can be null, so do a null check..
-//            if (value == null) {
-//                return;
-//            }
-//
-//            sb.appendHtmlConstant("<table>");
-//
-//            // Add the contact image.
-//            sb.appendHtmlConstant("<tr><td rowspan='3'>");
-//            sb.appendHtmlConstant(imageHtml);
-//            sb.appendHtmlConstant("</td>");
-//
-//            // Add the name and address.
-//            sb.appendHtmlConstant("<td style='font-size:95%;'>");
-//            sb.appendEscaped(value.getFullName());
-//            sb.appendHtmlConstant("</td></tr><tr><td>");
-//            sb.appendEscaped(value.getAddress());
-//            sb.appendHtmlConstant("</td></tr></table>");
-//        }
-//    }
+    void setTemplateCellTree(){
+
+
+        CellTree tree = new CellTree(new TreeViewModel() {
+
+            @Override
+            public <T> NodeInfo<?> getNodeInfo(T value) {
+                ListDataProvider<String> dataProvider = new ListDataProvider<String>();
+                for (int i = 0; i < 10; i++) {
+                    dataProvider.getList().add(value + "." + String.valueOf(i));
+                }
+                return new DefaultNodeInfo<String>(dataProvider,
+                        new IconCellDecorator(appResources.folderIcon(), new TextCell()), selectionModel, null);
+            }
+
+            @Override
+            public boolean isLeaf(Object value) {
+                return value.toString().length() > 10;
+            }
+        }, "Item 1");
+
+//        final SingleSelectionModel<String> selectionModel = new SingleSelectionModel<String>();
+//        tree.sele
+
+        selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+            @Override
+            public void onSelectionChange(SelectionChangeEvent event) {
+//                String selected = selectionModel.getSelectedObject();
+//                if (selected != null) {
+//                    Window.alert("You selected: " + selected);
+//                }
+
+            }
+        });
+
+        tree.setAnimationEnabled(true);
+        templateListPanel.add(tree);
+    }
+
+    void setTemplateTree(){
+        Tree tree = new Tree();
+        TreeItem root = new TreeItem(
+                imageItemHTML(appResources.folderIcon(), "foo@example.com"));
+        tree.addItem(root);
+
+        addImageItem(root, "Inbox", appResources.folderIcon());
+        addImageItem(root, "Drafts", appResources.folderIcon());
+        addImageItem(root, "Templates", appResources.folderIcon());
+        addImageItem(root, "Sent", appResources.folderIcon());
+        addImageItem(root, "Trash", appResources.folderIcon());
+
+
+
+        root.setState(true);
+        templateListPanel.add(tree);
+    }
+
+    private TreeItem addImageItem(TreeItem root, String title,
+                                  ImageResource imageProto) {
+        TreeItem item = new TreeItem(imageItemHTML(imageProto, title));
+        root.addItem(item);
+        return item;
+    }
+
+    private SafeHtml imageItemHTML(ImageResource imageProto, String title) {
+        Image image = AbstractImagePrototype.create(imageProto).createImage();
+
+        SafeHtmlBuilder builder = new SafeHtmlBuilder();
+        builder.append(AbstractImagePrototype.create(imageProto).getSafeHtml());
+        builder.appendHtmlConstant(" ");
+        builder.appendEscaped(title);
+        return builder.toSafeHtml();
+    }
+
+
 
 }
 

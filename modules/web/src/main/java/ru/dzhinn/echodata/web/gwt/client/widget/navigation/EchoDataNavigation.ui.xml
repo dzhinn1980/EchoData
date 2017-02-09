@@ -5,6 +5,7 @@
         xmlns:g='urn:import:com.google.gwt.user.client.ui'>
 
     <ui:with type=" ru.dzhinn.echodata.web.gwt.client.resources.EchoDataNavigationMessages" field="messages"/>
+    <ui:with field="appResources" type="ru.dzhinn.echodata.web.gwt.client.resources.AppResources"/>
 
 
     <ui:style>
@@ -57,18 +58,37 @@
 
 
             </g:customHeader>
-            <g:ScrollPanel ui:field="patientListPanel">
-                <!--<g:layer>-->
-                    <!--<g:Label>Lable</g:Label>-->
-                <!--</g:layer>-->
-            </g:ScrollPanel>
+            <g:DockLayoutPanel unit='PX'>
+                <g:north size='42'>
+                    <!--<g:TextBox width="100%"/>-->
+                    <g:DockLayoutPanel unit='PX'>
+                        <g:east size='44'>
+                            <g:PushButton>
+                                <g:upFace image="{appResources.searchIcon}"/>
+                            </g:PushButton>
+                            <!--<g:Button ui:field="searchPatientButton"/>-->
+
+                        </g:east>
+                        <g:center>
+                            <g:TextBox width="100%"/>
+                        </g:center>
+
+                    </g:DockLayoutPanel>
+                </g:north>
+
+                <g:center>
+                    <g:ScrollPanel ui:field="patientListPanel"/>
+                </g:center>
+
+            </g:DockLayoutPanel>
+
 
         </g:stack>
         <g:stack>
             <g:customHeader size='3'>
                 <g:Label text="{messages.templateListHeader}"/>
             </g:customHeader>
-            <g:Label>baker</g:Label>
+            <g:ScrollPanel ui:field="templateListPanel"/>
         </g:stack>
     </g:StackLayoutPanel>
 </ui:UiBinder>

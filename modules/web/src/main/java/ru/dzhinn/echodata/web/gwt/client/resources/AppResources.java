@@ -2,7 +2,6 @@ package ru.dzhinn.echodata.web.gwt.client.resources;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ClientBundle;
-import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.resources.client.ImageResource;
 
 /**
@@ -17,4 +16,10 @@ public interface AppResources extends ClientBundle{
 
     @Source(value = "male-silhouette.jpg")
     ImageResource maleSilhouette();
+
+    @Source(value = "folder-icon.png")
+    ImageResource folderIcon();
+
+    @Source(value = "search-icon.png")
+    ImageResource searchIcon();
 }
