@@ -7,6 +7,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
+import ru.dzhinn.echodata.web.gwt.client.resources.AppResources;
 
 import javax.inject.Inject;
 
@@ -16,10 +17,13 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
     }
 
 //    @UiField
-//    SimplePanel panel;
+//    SimplePanel backgroundPanel;
 
-    @UiField
-    Button button;
+//    @UiField(provided = true)
+//    AppResources appResources;
+
+//    @UiField
+//    Button button;
 
     @Inject
     HomeView(Binder uiBinder) {
@@ -28,7 +32,13 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
 //        panel.add(new Button("b1"));
 //        panel.add(new Label("l1"));
 
+
+
         initWidget(uiBinder.createAndBindUi(this));
+
+
+
+
 
 //        bindSlot(HomePresenter.SLOT_HOME, main);
 

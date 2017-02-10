@@ -28,7 +28,7 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
             EventBus eventBus,
             MyView view,
             MyProxy proxy) {
-        super(eventBus, view, proxy, ApplicationPresenter.SLOT_APPLICATION);
+        super(eventBus, view, proxy, ApplicationPresenter.SLOT_CONTENT);
 
     }
 

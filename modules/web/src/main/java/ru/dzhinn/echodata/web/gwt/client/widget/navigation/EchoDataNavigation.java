@@ -18,6 +18,10 @@ import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.gwt.view.client.TreeViewModel;
 import com.google.inject.Inject;
+import com.gwtplatform.mvp.client.proxy.PlaceManager;
+import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
+import ru.dzhinn.echodata.web.gwt.client.place.NameTokens;
+import ru.dzhinn.echodata.web.gwt.client.place.ParameterTokens;
 import ru.dzhinn.echodata.web.gwt.client.resources.AppResources;
 import ru.dzhinn.echodata.web.gwt.client.widget.navigation.render.ContactCell;
 import ru.dzhinn.echodata.web.gwt.client.widget.navigation.render.ContactInfo;
@@ -39,43 +43,28 @@ public class EchoDataNavigation extends Composite {
 //    @UiField
 //    Button searchPatientButton;
 
-    private static final List<ContactInfo> Contacts = Arrays.asList(
-            new ContactInfo("fio1", "adr1"),
-            new ContactInfo("fio2", "adr2"),
-            new ContactInfo("fio3", "adr3"),
-            new ContactInfo("fio4", "adr4"),
-            new ContactInfo("fio5", "adr5"),
-            new ContactInfo("fio6", "adr6"),
-            new ContactInfo("fio7", "adr7"),
-            new ContactInfo("fio8", "adr8"),
-            new ContactInfo("fio9", "adr9"),
-            new ContactInfo("fio11", "adr11"),
-            new ContactInfo("fio12", "adr12"),
-            new ContactInfo("fio13", "adr13"),
-            new ContactInfo("fio14", "adr14"),
-            new ContactInfo("fio15", "adr15"),
-            new ContactInfo("fio16", "adr16"),
-            new ContactInfo("fio17", "adr17"),
-            new ContactInfo("fio18", "adr18"),
-            new ContactInfo("fio19", "adr19")
-    );
+
 
     @UiField(provided = true)
     AppResources appResources;
 
+    PlaceManager placeManager;
+
     final SingleSelectionModel<String> selectionModel = new SingleSelectionModel<String>();
 
     @Inject
-    public EchoDataNavigation(AppResources appResources) {
+    public EchoDataNavigation(AppResources appResources, PlaceManager placeManager) {
         this.appResources = appResources;
+        this.placeManager = placeManager;
 
         initWidget(binder.createAndBindUi(this));
 
+        List<ContactInfo> contacts = ContactInfo.getContacts();
         ImageResource maleSilhouette = appResources.maleSilhouette();
         ContactCell contactCell = new ContactCell(maleSilhouette);
         CellList<ContactInfo> cellList = new CellList<ContactInfo>(contactCell);
-        cellList.setRowCount(Contacts.size(), true);
-        cellList.setRowData(0, Contacts);
+        cellList.setRowCount(contacts.size(), true);
+        cellList.setRowData(0, contacts);
 
         patientListPanel.add(cellList);
 
@@ -83,47 +72,52 @@ public class EchoDataNavigation extends Composite {
 //        searchPatientButton.getElement().appendChild(appResources.searchIcon().geE);
 
 //        setTemplateTree();
-        setTemplateCellTree();
+//        setTemplateCellTree();
     }
 
-    void setTemplateCellTree(){
-
-
-        CellTree tree = new CellTree(new TreeViewModel() {
-
-            @Override
-            public <T> NodeInfo<?> getNodeInfo(T value) {
-                ListDataProvider<String> dataProvider = new ListDataProvider<String>();
-                for (int i = 0; i < 10; i++) {
-                    dataProvider.getList().add(value + "." + String.valueOf(i));
-                }
-                return new DefaultNodeInfo<String>(dataProvider,
-                        new IconCellDecorator(appResources.folderIcon(), new TextCell()), selectionModel, null);
-            }
-
-            @Override
-            public boolean isLeaf(Object value) {
-                return value.toString().length() > 10;
-            }
-        }, "Item 1");
-
-//        final SingleSelectionModel<String> selectionModel = new SingleSelectionModel<String>();
-//        tree.sele
-
-        selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-            @Override
-            public void onSelectionChange(SelectionChangeEvent event) {
+//    void setTemplateCellTree(){
+//
+//
+//        CellTree tree = new CellTree(new TreeViewModel() {
+//
+//            @Override
+//            public <T> NodeInfo<?> getNodeInfo(T value) {
+//                ListDataProvider<String> dataProvider = new ListDataProvider<String>();
+//                for (int i = 0; i < 10; i++) {
+//                    dataProvider.getList().add(value + "." + String.valueOf(i));
+//                }
+//                return new DefaultNodeInfo<String>(dataProvider,
+//                        new IconCellDecorator(appResources.folderIcon(), new TextCell()), selectionModel, null);
+//            }
+//
+//            @Override
+//            public boolean isLeaf(Object value) {
+//                return value.toString().length() > 10;
+//            }
+//        }, "Item 1");
+//
+////        final SingleSelectionModel<String> selectionModel = new SingleSelectionModel<String>();
+////        tree.sele
+//
+//        selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+//            @Override
+//            public void onSelectionChange(SelectionChangeEvent event) {
 //                String selected = selectionModel.getSelectedObject();
 //                if (selected != null) {
-//                    Window.alert("You selected: " + selected);
+//                    PlaceRequest placeRequest = new PlaceRequest.Builder()
+//                            .nameToken(NameTokens.TEMPLATE_LIST)
+//                            .with(ParameterTokens.TEMPLATE_CATEGORY_ID, selected)
+//                            .build();
+//
+//                    placeManager.revealPlace(placeRequest);
 //                }
-
-            }
-        });
-
-        tree.setAnimationEnabled(true);
-        templateListPanel.add(tree);
-    }
+//
+//            }
+//        });
+//
+//        tree.setAnimationEnabled(true);
+//        templateListPanel.add(tree);
+//    }
 
     void setTemplateTree(){
         Tree tree = new Tree();

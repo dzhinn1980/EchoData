@@ -1,90 +1,29 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-             xmlns:g="urn:import:com.google.gwt.user.client.ui"
-             xmlns:echodata='urn:import:ru.dzhinn.echodata.web.gwt.client.widget.navigation'
->
-    <!--<g:SimplePanel  ui:field="main"/>-->
+             xmlns:g="urn:import:com.google.gwt.user.client.ui">
+
 
     <ui:style>
-
-
-        .right_border {
-            border-right: 1px solid #E5E5E5;
-        }
-
-        .left_border {
-            border-left: 1px solid #E5E5E5;
-        }
-
-        .bottom_border {
-            border-bottom: 1px solid #E5E5E5;
-        }
 
         .top_border {
             border-top: 1px solid #E5E5E5;
         }
 
-        .stackHeader {
-            gwt-sprite: "gradient";
-            background-color: #b4b6bc;
-            cursor: pointer;
-            text-shadow: rgba(255, 255, 255, 1) 0 1px 1px;
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #000;
-            padding: 0.7em 0.5em 0 0.6em;
-            border-top: 1px solid #888;
-        }
-
-        /*.gwt-SplitLayoutPanel-HDragger, .gwt-SplitLayoutPanel-VDragger {*/
-            /*background-color: white;*/
-        /*}*/
-
-        /*.gwt-SplitLayoutPanel-HDragger {*/
-            /*cursor: col-resize;*/
-        /*}*/
-
-        /*.gwt-SplitLayoutPanel-VDragger {*/
-            /*cursor: row-resize;*/
-        /*}*/
     </ui:style>
 
     <g:DockLayoutPanel unit='EM'>
         <g:north size='5'>
             <g:FlowPanel ui:field='topPanel' />
-            <!--<mail:TopPanel ui:field='topPanel' />-->
         </g:north>
 
         <g:center>
             <g:SplitLayoutPanel >
-                <g:west size='400'>
-                    <echodata:EchoDataNavigation/>
-
-                    <!--<g:StackLayoutPanel unit='EM'>-->
-                        <!--<g:stack>-->
-                            <!--<g:header size='3'><b>HTML</b> header</g:header>-->
-                            <!--<g:Label> dignissim </g:Label>-->
-                            <!--&lt;!&ndash;<g:VerticalPanel ui:field="vertPanel">&ndash;&gt;-->
-                                <!--&lt;!&ndash;<g:Label> dignissim </g:Label>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<g:Label> qui blandit </g:Label>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<g:Label> praesent luptatum </g:Label>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</g:VerticalPanel>&ndash;&gt;-->
-                        <!--</g:stack>-->
-                        <!--<g:stack>-->
-                            <!--<g:customHeader size='3'>-->
-                                <!--<g:Label>Custom header</g:Label>-->
-                            <!--</g:customHeader>-->
-                            <!--<g:Label>baker</g:Label>-->
-                        <!--</g:stack>-->
-                    <!--</g:StackLayoutPanel>-->
+                <g:west size='400' >
+                    <g:LayoutPanel ui:field="navigationPanel"/>
                 </g:west>
 
-                <g:north size='200' >
-                    <g:FlowPanel ui:field='listPanel' styleName="{style.left_border} {style.bottom_border} {style.top_border}"/>
-                </g:north>
-
                 <g:center>
-                    <g:FlowPanel ui:field='contentPanel' styleName="{style.left_border} {style.top_border}"/>
+                    <g:LayoutPanel ui:field='contentPanel' styleName="{style.top_border}"/>
                 </g:center>
             </g:SplitLayoutPanel>
         </g:center>

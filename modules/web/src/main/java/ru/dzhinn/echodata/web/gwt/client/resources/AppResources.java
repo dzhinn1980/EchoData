@@ -22,4 +22,8 @@ public interface AppResources extends ClientBundle{
 
     @Source(value = "search-icon.png")
     ImageResource searchIcon();
+
+    @Source(value = "FreeVector-ECG-Line.jpg")
+    ImageResource backgroundImage();
+
 }
