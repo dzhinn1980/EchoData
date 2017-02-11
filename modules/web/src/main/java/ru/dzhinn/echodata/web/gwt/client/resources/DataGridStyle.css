@@ -1,0 +1,46 @@
+.dataGridFooter {
+    border-top: 1px solid #b2b2b2;
+    padding: 3px 15px;
+    text-align: left;
+    color: #999999;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.dataGridHeader {
+    border-bottom: 1px solid #b2b2b2;
+    padding: 3px 15px;
+    text-align: left;
+    color: #999999;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.dataGridSortableHeader:hover {
+    color: #6c6b6b;
+}
+
+.dataGridKeyboardSelectedRow {
+    background: #ffc;
+}
+
+.dataGridKeyboardSelectedRowCell {
+    border: selectionBorderWidth solid #ffc;
+}
+
+.dataGridSelectedRow {
+    background: #4c4c4c;
+    color: white;
+    height: auto;
+    overflow: auto;
+}
+
+.dataGridSelectedRowCell {
+    border: selectionBorderWidth solid #4c4c4c;
+}
+
+.dataGridKeyboardSelectedCell {
+    border: selectionBorderWidth solid #4c4c4c;
+}

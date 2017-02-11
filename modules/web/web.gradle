@@ -7,17 +7,21 @@ configurations {
 
 ext.gwtVersion = '2.8.0'
 ext.gwtpVersion = '1.6'
+ext.gwtbootstrap3Version = '0.9.3'
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
 
     compile "com.google.gwt:gwt-user:$gwtVersion",
             "com.google.gwt:gwt-dev:$gwtVersion",
-            "com.gwtplatform:gwtp-mvp-client:$gwtpVersion"
+            "com.gwtplatform:gwtp-mvp-client:$gwtpVersion",
+            "org.gwtbootstrap3:gwtbootstrap3:$gwtbootstrap3Version"
+
 
     gwtCompile "com.google.gwt:gwt-user:$gwtVersion",
             "com.google.gwt:gwt-dev:$gwtVersion",
-            "com.gwtplatform:gwtp-mvp-client:$gwtpVersion"
+            "com.gwtplatform:gwtp-mvp-client:$gwtpVersion",
+            "org.gwtbootstrap3:gwtbootstrap3:$gwtbootstrap3Version"
 }
 
 sourceSets {

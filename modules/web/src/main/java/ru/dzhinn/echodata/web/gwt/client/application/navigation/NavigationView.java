@@ -20,6 +20,7 @@ import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 import ru.dzhinn.echodata.web.gwt.client.place.NameTokens;
 import ru.dzhinn.echodata.web.gwt.client.place.ParameterTokens;
 import ru.dzhinn.echodata.web.gwt.client.resources.AppResources;
+import ru.dzhinn.echodata.web.gwt.client.resources.DataGridResources;
 import ru.dzhinn.echodata.web.gwt.client.widget.navigation.render.ContactCell;
 import ru.dzhinn.echodata.web.gwt.client.widget.navigation.render.ContactInfo;
 
@@ -42,7 +43,7 @@ public class NavigationView extends ViewWithUiHandlers<NavigationUiHandlers> imp
     final SingleSelectionModel<String> selectionModel = new SingleSelectionModel<String>();
 
     @Inject
-    NavigationView(Binder uiBinder, AppResources appResources) {
+    NavigationView(Binder uiBinder, AppResources appResources, DataGridResources dataGridResources) {
         this.appResources = appResources;
 
         initWidget(uiBinder.createAndBindUi(this));

@@ -18,6 +18,7 @@
 
         <g:center>
             <g:SplitLayoutPanel >
+
                 <g:west size='400' >
                     <g:LayoutPanel ui:field="navigationPanel"/>
                 </g:west>

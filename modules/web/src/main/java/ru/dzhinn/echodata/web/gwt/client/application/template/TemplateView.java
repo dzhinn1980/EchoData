@@ -6,12 +6,10 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.DataGrid;
 import com.google.gwt.user.cellview.client.SimplePager;
-import com.google.gwt.user.client.ui.LayoutPanel;
-import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.SplitLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
+import ru.dzhinn.echodata.web.gwt.client.resources.DataGridResources;
 import ru.dzhinn.echodata.web.gwt.client.widget.navigation.render.ContactInfo;
 
 import javax.inject.Inject;
@@ -22,11 +20,6 @@ public class TemplateView extends ViewWithUiHandlers<TemplateUiHandlers> impleme
     interface Binder extends UiBinder<Widget, TemplateView> {
     }
 
-//    @UiField
-//    SplitLayoutPanel splitLayoutPanel;
-//
-//    @UiField
-//    LayoutPanel listPanel;
 
     @UiField(provided = true)
     DataGrid<ContactInfo> dataGrid;
@@ -36,16 +29,16 @@ public class TemplateView extends ViewWithUiHandlers<TemplateUiHandlers> impleme
     private ListDataProvider<ContactInfo> dataProvider = new ListDataProvider<ContactInfo>();
 
     @Inject
-    TemplateView(Binder uiBinder) {
+    TemplateView(Binder uiBinder, DataGridResources dataGridResources) {
 
-        initTable();
+        initTable(dataGridResources);
 
         initWidget(uiBinder.createAndBindUi(this));
     }
 
-    private void initTable() {
+    private void initTable(DataGridResources dataGridResources) {
 
-        dataGrid = new DataGrid<ContactInfo>();
+        dataGrid = new DataGrid<ContactInfo>(10, dataGridResources);
         dataGrid.setWidth("100%");
 
         pager = new SimplePager();
