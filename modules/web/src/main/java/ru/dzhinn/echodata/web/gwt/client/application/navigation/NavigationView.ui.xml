@@ -8,15 +8,8 @@
 
     <g:StackLayoutPanel unit='EM'>
         <g:stack>
-            <!--<g:header size='3'>{messages.patientListHeader}</g:header>-->
             <g:customHeader size='3'>
-                <g:LayoutPanel>
-                    <g:layer>
-                        <g:Label text="{messages.patientListHeader}"/>
-                    </g:layer>
-                </g:LayoutPanel>
-
-
+                <g:Label text="{messages.patientListHeader}"/>
             </g:customHeader>
             <g:DockLayoutPanel unit='PX'>
                 <g:north size='42'>

@@ -33,9 +33,6 @@ public class ApplicationPresenter extends Presenter<ApplicationPresenter.MyView,
             MyView view,
             MyProxy proxy) {
         super(eventBus, view, proxy, RevealType.RootLayout);
-
-
-
     }
 
     @Override

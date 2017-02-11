@@ -1,6 +1,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-             xmlns:g="urn:import:com.google.gwt.user.client.ui">
+             xmlns:g="urn:import:com.google.gwt.user.client.ui"
+             xmlns:c="urn:import:com.google.gwt.user.cellview.client">
 
     <ui:style>
 
@@ -9,16 +10,38 @@
         }
 
     </ui:style>
-    <!--<g:Label>Test</g:Label>-->
 
-    <g:SplitLayoutPanel ui:field="splitLayoutPanel">
-        <g:north size='200' >
-            <g:LayoutPanel ui:field="listPanel"/>
-        </g:north>
+    <g:StackLayoutPanel unit='EM'>
+        <g:stack>
+            <g:customHeader size='3'>
+                <g:Label text="Список"/>
+            </g:customHeader>
 
-        <g:center>
-            <!--<g:FlowPanel ui:field='contentPanel' styleName="{style.top_border}"/>-->
-            <g:Label>Podr</g:Label>
-        </g:center>
-    </g:SplitLayoutPanel>
+            <g:SplitLayoutPanel ui:field="splitLayoutPanel">
+                <g:north size='200'>
+                    <g:DockLayoutPanel unit="EM">
+                        <g:center>
+                            <c:DataGrid ui:field='dataGrid' />
+                        </g:center>
+
+                        <g:south size="3">
+                            <g:HTMLPanel>
+                                <table style="width:100%">
+                                    <tr>
+                                        <td align='center'>
+                                            <c:SimplePager ui:field='pager' />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </g:HTMLPanel>
+                        </g:south>
+                    </g:DockLayoutPanel>
+                </g:north>
+
+                <g:center>
+                    <g:Label>Podr</g:Label>
+                </g:center>
+            </g:SplitLayoutPanel>
+        </g:stack>
+    </g:StackLayoutPanel>
 </ui:UiBinder>
