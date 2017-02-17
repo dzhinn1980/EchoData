@@ -3,6 +3,7 @@ package ru.dzhinn.echodata.web.gwt.client.resources;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.ImageResource;
+import com.google.gwt.user.cellview.client.CellTree;
 
 /**
  * Created by A.Dzhioev on 07.02.2017.

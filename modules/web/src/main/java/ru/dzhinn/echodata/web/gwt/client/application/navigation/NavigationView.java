@@ -7,20 +7,14 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.cellview.client.CellTree;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.ScrollPanel;
-import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.*;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.gwt.view.client.TreeViewModel;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
-import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
-import ru.dzhinn.echodata.web.gwt.client.place.NameTokens;
-import ru.dzhinn.echodata.web.gwt.client.place.ParameterTokens;
 import ru.dzhinn.echodata.web.gwt.client.resources.AppResources;
-import ru.dzhinn.echodata.web.gwt.client.resources.DataGridResources;
+import ru.dzhinn.echodata.web.gwt.client.resources.celltree.CellTreeResources;
 import ru.dzhinn.echodata.web.gwt.client.widget.navigation.render.ContactCell;
 import ru.dzhinn.echodata.web.gwt.client.widget.navigation.render.ContactInfo;
 
@@ -42,9 +36,12 @@ public class NavigationView extends ViewWithUiHandlers<NavigationUiHandlers> imp
 
     final SingleSelectionModel<String> selectionModel = new SingleSelectionModel<String>();
 
+    CellTreeResources cellTreeResources;
+
     @Inject
-    NavigationView(Binder uiBinder, AppResources appResources, DataGridResources dataGridResources) {
+    NavigationView(Binder uiBinder, AppResources appResources, CellTreeResources cellTreeResources) {
         this.appResources = appResources;
+        this.cellTreeResources = cellTreeResources;
 
         initWidget(uiBinder.createAndBindUi(this));
 
@@ -70,15 +67,14 @@ public class NavigationView extends ViewWithUiHandlers<NavigationUiHandlers> imp
                 for (int i = 0; i < 10; i++) {
                     dataProvider.getList().add(value + "." + String.valueOf(i));
                 }
-                return new DefaultNodeInfo<String>(dataProvider,
-                        new IconCellDecorator(appResources.folderIcon(), new TextCell()), selectionModel, null);
+                return new DefaultNodeInfo<String>(dataProvider, new TextCell(), selectionModel, null);
             }
 
             @Override
             public boolean isLeaf(Object value) {
-                return value.toString().length() > 10;
+                return value.toString().length() > 16;
             }
-        }, "Item 1");
+        }, "Структура 1", cellTreeResources);
 
         selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
             @Override
@@ -97,23 +93,23 @@ public class NavigationView extends ViewWithUiHandlers<NavigationUiHandlers> imp
 
 
     private static final List<ContactInfo> contacts = Arrays.asList(
-            new ContactInfo("fio1", "adr1"),
-            new ContactInfo("fio2", "adr2"),
-            new ContactInfo("fio3", "adr3"),
-            new ContactInfo("fio4", "adr4"),
-            new ContactInfo("fio5", "adr5"),
-            new ContactInfo("fio6", "adr6"),
-            new ContactInfo("fio7", "adr7"),
-            new ContactInfo("fio8", "adr8"),
-            new ContactInfo("fio9", "adr9"),
-            new ContactInfo("fio11", "adr11"),
-            new ContactInfo("fio12", "adr12"),
-            new ContactInfo("fio13", "adr13"),
-            new ContactInfo("fio14", "adr14"),
-            new ContactInfo("fio15", "adr15"),
-            new ContactInfo("fio16", "adr16"),
-            new ContactInfo("fio17", "adr17"),
-            new ContactInfo("fio18", "adr18"),
-            new ContactInfo("fio19", "adr19")
+            new ContactInfo("Familia Imia Otchestvo1", "adr1"),
+            new ContactInfo("Familia Imia Otchestvo2", "adr2"),
+            new ContactInfo("Familia Imia Otchestvo3", "adr3"),
+            new ContactInfo("Familia Imia Otchestvo4", "adr4"),
+            new ContactInfo("Familia Imia Otchestvo5", "adr5"),
+            new ContactInfo("Familia Imia Otchestvo6", "adr6"),
+            new ContactInfo("Familia Imia Otchestvo7", "adr7"),
+            new ContactInfo("Familia Imia Otchestvo8", "adr8"),
+            new ContactInfo("Familia Imia Otchestvo9", "adr9"),
+            new ContactInfo("Familia Imia Otchestvo11", "adr11"),
+            new ContactInfo("Familia Imia Otchestvo12", "adr12"),
+            new ContactInfo("Familia Imia Otchestvo13", "adr13"),
+            new ContactInfo("Familia Imia Otchestvo14", "adr14"),
+            new ContactInfo("Familia Imia Otchestvo15", "adr15"),
+            new ContactInfo("Familia Imia Otchestvo16", "adr16"),
+            new ContactInfo("Familia Imia Otchestvo17", "adr17"),
+            new ContactInfo("Familia Imia Otchestvo18", "adr18"),
+            new ContactInfo("Familia Imia Otchestvo19", "adr19")
     );
 }

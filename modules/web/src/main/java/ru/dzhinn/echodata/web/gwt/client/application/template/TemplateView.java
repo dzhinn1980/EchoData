@@ -68,7 +68,7 @@ public class TemplateView extends ViewWithUiHandlers<TemplateUiHandlers> impleme
                 new Column<ContactInfo, String>(new EditTextCell()) {
                     @Override
                     public String getValue(ContactInfo object) {
-                        return object.getAddress();
+                        return object.getDateOfBirth();
                     }
                 };
         dataGrid.addColumn(addressColumn, "Column 2");

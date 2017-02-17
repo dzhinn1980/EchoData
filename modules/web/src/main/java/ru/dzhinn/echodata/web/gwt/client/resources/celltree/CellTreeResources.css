@@ -1,0 +1,81 @@
+@font-face {
+  font-family: 'OpenSans';
+  font-style: normal;
+  font-weight: 400;
+  src: url(opensans.woff) format('woff');
+}
+
+.cellTreeWidget {
+  font-size: 90%;
+  color: #2878C8;
+  font-family: 'OpenSans', Arial Unicode MS, Arial, sans-serif;
+}
+
+.cellTreeEmptyMessage {
+  padding-left: 16px;
+  font-style: italic;
+}
+
+.cellTreeItem {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  cursor: hand;
+  cursor: pointer;
+  zoom: 1;
+
+}
+
+.cellTreeItemImage {
+
+}
+
+.cellTreeItemImageValue {
+  zoom: 1;
+}
+
+.cellTreeItemValue {
+  padding-left: 3px;
+  padding-right: 3px;
+  /*outline: none;*/
+}
+
+.cellTreeOpenItem {
+
+}
+
+.cellTreeTopItem {
+  font-weight: bold;
+  /*color: #4b4a4a;*/
+  /*margin-top: 20px;*/
+  /*padding: 3px 13px 3px 10px !important;*/
+}
+
+.cellTreeTopItemImage {
+
+}
+
+.cellTreeTopItemImageValue {
+  /*border-bottom: 1px solid red;*/
+  /*padding-bottom: 1px;*/
+}
+
+.cellTreeKeyboardSelectedItem {
+  background-color: #ffc;
+  outline: none;
+}
+
+/*@sprite */
+  .cellTreeSelectedItem .cellTreeItemValue{
+  /*gwt-image: 'cellTreeSelectedBackground';*/
+  background-color: #4c4c4c;
+    border-radius: 2px;
+  color: white;
+  height: auto;
+  overflow: visible;
+    display: inline-block;
+}
+
+.cellTreeShowMoreButton {
+  padding-left: 16px;
+  outline: none;
+}

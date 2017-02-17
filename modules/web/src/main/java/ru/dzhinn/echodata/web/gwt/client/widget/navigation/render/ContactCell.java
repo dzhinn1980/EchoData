@@ -2,7 +2,6 @@ package ru.dzhinn.echodata.web.gwt.client.widget.navigation.render;
 
 
 import com.google.gwt.cell.client.AbstractCell;
-import com.google.gwt.cell.client.Cell;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
@@ -34,11 +33,11 @@ public class ContactCell extends AbstractCell<ContactInfo> {
         sb.appendHtmlConstant(imageHtml);
         sb.appendHtmlConstant("</td>");
 
-        // Add the name and address.
+        // Add the name and dateOfBirth.
         sb.appendHtmlConstant("<td style='font-size:95%;'>");
         sb.appendEscaped(value.getFullName());
         sb.appendHtmlConstant("</td></tr><tr><td>");
-        sb.appendEscaped(value.getAddress());
+        sb.appendEscaped(value.getDateOfBirth());
         sb.appendHtmlConstant("</td></tr></table>");
     }
 }
