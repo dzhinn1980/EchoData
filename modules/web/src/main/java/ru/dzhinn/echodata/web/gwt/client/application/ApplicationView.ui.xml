@@ -16,17 +16,15 @@
             margin-right: 20px;
         }
 
-        /*@sprite*/
         .topBackground{
-            /*gwt-image: 'logoBackground';*/
-            background:  url(/images/logo_background.png) repeat-y center 0px;
-            /*background:   repeat-x 0px -50px;*/
+            /*background:  url(/images/logo_background.png) repeat-y center 0px;*/
+            background:  url(/images/onlinelogomaker-022017-1721-1868.png) no-repeat  center;
         }
     </ui:style>
 
 
     <g:DockLayoutPanel unit='EM' addStyleNames="{style.left_padding}">
-        <g:north size='5'>
+        <g:north size='8'>
             <g:FlowPanel ui:field='topPanel' addStyleNames="{style.topBackground}"/>
         </g:north>
 
