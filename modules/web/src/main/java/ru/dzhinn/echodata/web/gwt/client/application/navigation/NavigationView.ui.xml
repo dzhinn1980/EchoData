@@ -10,28 +10,29 @@
             <g:customHeader size='3'>
                 <g:Label text="{messages.patientListHeader}"/>
             </g:customHeader>
-            <g:DockLayoutPanel unit='PX'>
-                <g:north size='23'>
+            <g:ScrollPanel ui:field="patientListPanel"/>
+            <!--<g:DockLayoutPanel unit='PX'>-->
+                <!--<g:north size='23'>-->
                     <!--<g:TextBox width="100%"/>-->
-                    <g:DockLayoutPanel unit='PX'>
-                        <g:east size='44'>
-                            <g:PushButton>
-                                <g:upFace image="{appResources.searchIcon}"/>
-                            </g:PushButton>
+                    <!--&lt;!&ndash;<g:DockLayoutPanel unit='PX'>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<g:east size='44'>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<g:PushButton>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<g:upFace image="{appResources.searchIcon}"/>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</g:PushButton>&ndash;&gt;-->
 
-                        </g:east>
-                        <g:center>
-                            <g:TextBox width="100%"/>
-                        </g:center>
+                        <!--&lt;!&ndash;</g:east>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<g:center>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<g:TextBox width="100%"/>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</g:center>&ndash;&gt;-->
 
-                    </g:DockLayoutPanel>
-                </g:north>
+                    <!--&lt;!&ndash;</g:DockLayoutPanel>&ndash;&gt;-->
+                <!--</g:north>-->
 
-                <g:center>
-                    <g:ScrollPanel ui:field="patientListPanel"/>
-                </g:center>
+                <!--<g:center>-->
+                    <!--<g:ScrollPanel ui:field="patientListPanel"/>-->
+                <!--</g:center>-->
 
-            </g:DockLayoutPanel>
+            <!--</g:DockLayoutPanel>-->
 
 
         </g:stack>

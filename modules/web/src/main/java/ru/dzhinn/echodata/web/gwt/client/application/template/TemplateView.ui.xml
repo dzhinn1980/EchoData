@@ -3,12 +3,15 @@
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
              xmlns:c="urn:import:com.google.gwt.user.cellview.client">
 
-    <ui:style>
+    <!--<ui:with field="appResources" type="ru.dzhinn.echodata.web.gwt.client.resources.AppResources"/>-->
 
+    <ui:style>
         .top_border {
             border-top: 1px solid #E5E5E5;
         }
-
+        .bottom_border {
+            border-bottom: 1px solid #E5E5E5;
+        }
     </ui:style>
 
     <g:StackLayoutPanel unit='EM'>
@@ -17,15 +20,15 @@
                 <g:Label text="Список"/>
             </g:customHeader>
 
-            <g:SplitLayoutPanel ui:field="splitLayoutPanel">
+            <g:SplitLayoutPanel ui:field="splitLayoutPanel" >
                 <g:north size='200'>
-                    <g:DockLayoutPanel unit="EM">
+                    <g:DockLayoutPanel unit="EM" addStyleNames="{style.bottom_border}">
                         <g:center>
                             <c:DataGrid ui:field='dataGrid' />
                         </g:center>
 
                         <g:south size="3">
-                            <g:HTMLPanel>
+                            <g:HTMLPanel >
                                 <table style="width:100%">
                                     <tr>
                                         <td align='center'>
@@ -39,7 +42,10 @@
                 </g:north>
 
                 <g:center>
-                    <g:Label>Podr</g:Label>
+                    <g:ScrollPanel addStyleNames="{style.top_border}">
+                        <g:Label>Podr</g:Label>
+                    </g:ScrollPanel>
+
                 </g:center>
             </g:SplitLayoutPanel>
         </g:stack>

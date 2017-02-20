@@ -31,7 +31,7 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         bindSlot(ApplicationPresenter.SLOT_NAVIGATION, navigationPanel);
         bindSlot(ApplicationPresenter.SLOT_CONTENT, contentPanel);
 
-        topPanel.add(new Label("topPanel"));
+//        topPanel.add(new Label("topPanel"));
     }
 
 }
