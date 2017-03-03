@@ -9,4 +9,5 @@ public class NameTokens {
     public static final String TEMPLATE = "template";
 
 
+    public static final String VISIT = "visit";
 }

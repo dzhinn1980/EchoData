@@ -1,22 +1,29 @@
 package ru.dzhinn.echodata.web.gwt.client.application.navigation;
 
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.dispatch.rpc.shared.DispatchAsync;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
-import com.gwtplatform.mvp.client.presenter.slots.NestedSlot;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
-import ru.dzhinn.echodata.web.gwt.client.application.ApplicationPresenter;
 import ru.dzhinn.echodata.web.gwt.client.place.NameTokens;
 import ru.dzhinn.echodata.web.gwt.client.place.ParameterTokens;
+import ru.dzhinn.echodata.web.gwt.shared.dispatch.patient.GetPatientListAction;
+import ru.dzhinn.echodata.web.gwt.shared.dispatch.patient.GetPatientListResult;
+import ru.dzhinn.echodata.web.gwt.shared.dto.patient.PatientModel;
+
+import java.util.List;
 
 
 public class NavigationPresenter extends Presenter<NavigationPresenter.MyView, NavigationPresenter.MyProxy> implements NavigationUiHandlers {
     interface MyView extends View, HasUiHandlers<NavigationUiHandlers> {
+        void setPatientList(List<PatientModel> models);
     }
 
 
@@ -24,7 +31,9 @@ public class NavigationPresenter extends Presenter<NavigationPresenter.MyView, N
     interface MyProxy extends Proxy<NavigationPresenter> {
     }
 
-//    public static final NestedSlot SLOT_NAVIGATION = new NestedSlot();
+
+    @Inject
+    private DispatchAsync dispatch;
 
     PlaceManager placeManager;
 
@@ -44,6 +53,23 @@ public class NavigationPresenter extends Presenter<NavigationPresenter.MyView, N
     }
 
     @Override
+    protected void onBind() {
+        super.onBind();
+
+        dispatch.execute(new GetPatientListAction(null), new AsyncCallback<GetPatientListResult>() {
+            @Override
+            public void onFailure(Throwable caught) {
+                Window.alert("hyi");
+            }
+
+            @Override
+            public void onSuccess(GetPatientListResult result) {
+                getView().setPatientList(result.getModels());
+            }
+        });
+    }
+
+    @Override
     public void onTemplateSelectionChange(String selected) {
         PlaceRequest placeRequest = new PlaceRequest.Builder()
                 .nameToken(NameTokens.TEMPLATE)
@@ -51,5 +77,17 @@ public class NavigationPresenter extends Presenter<NavigationPresenter.MyView, N
                 .build();
 
         placeManager.revealPlace(placeRequest);
+    }
+
+    @Override
+    public void patientSelectionChange(PatientModel model) {
+        if (model != null) {
+            PlaceRequest placeRequest = new PlaceRequest.Builder()
+                    .nameToken(NameTokens.VISIT)
+                    .with(ParameterTokens.PATIENT_ID, model.getId().toString())
+                    .build();
+
+            placeManager.revealPlace(placeRequest);
+        }
     }
 }

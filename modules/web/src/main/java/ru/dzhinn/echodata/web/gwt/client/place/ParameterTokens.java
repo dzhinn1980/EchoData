@@ -5,4 +5,6 @@ package ru.dzhinn.echodata.web.gwt.client.place;
  */
 public class ParameterTokens {
     public static final String TEMPLATE_CATEGORY_ID = "template-category-id";
+
+    public static final String PATIENT_ID = "patient-id";
 }

@@ -1,6 +1,7 @@
 package ru.dzhinn.echodata.web.gwt.client.application.template;
 
 import com.google.gwt.cell.client.EditTextCell;
+import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.Column;
@@ -10,7 +11,8 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.ListDataProvider;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 import ru.dzhinn.echodata.web.gwt.client.resources.DataGridResources;
-import ru.dzhinn.echodata.web.gwt.client.widget.navigation.render.ContactInfo;
+import ru.dzhinn.echodata.web.gwt.shared.dto.patient.PatientModel;
+import ru.dzhinn.echodata.web.gwt.shared.dto.template.TemplateModel;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -22,11 +24,11 @@ public class TemplateView extends ViewWithUiHandlers<TemplateUiHandlers> impleme
 
 
     @UiField(provided = true)
-    DataGrid<ContactInfo> dataGrid;
+    DataGrid<TemplateModel> dataGrid;
     @UiField(provided = true)
     SimplePager pager;
 
-    private ListDataProvider<ContactInfo> dataProvider = new ListDataProvider<ContactInfo>();
+    private ListDataProvider<TemplateModel> dataProvider = new ListDataProvider<>();
 
     @Inject
     TemplateView(Binder uiBinder, DataGridResources dataGridResources) {
@@ -38,7 +40,7 @@ public class TemplateView extends ViewWithUiHandlers<TemplateUiHandlers> impleme
 
     private void initTable(DataGridResources dataGridResources) {
 
-        dataGrid = new DataGrid<ContactInfo>(10, dataGridResources);
+        dataGrid = new DataGrid<TemplateModel>(10, dataGridResources);
         dataGrid.setWidth("100%");
 
         pager = new SimplePager();
@@ -46,31 +48,39 @@ public class TemplateView extends ViewWithUiHandlers<TemplateUiHandlers> impleme
 
         initTableColumns();
 
-        List<ContactInfo> contacts = dataProvider.getList();
-        for (ContactInfo contactInfo : ContactInfo.getContacts()) {
-            contacts.add(contactInfo);
-        }
+//        List<PatientModel> contacts = dataProvider.getList();
+//        for (PatientModel patient : PatientModel.getContacts()) {
+//            contacts.add(patient);
+//        }
         dataProvider.addDataDisplay(dataGrid);
 
     }
 
-    private void initTableColumns() {
-        Column<ContactInfo, String> firstNameColumn =
-                new Column<ContactInfo, String>(new EditTextCell()) {
-                    @Override
-                    public String getValue(ContactInfo object) {
-                        return object.getFullName();
-                    }
-                };
-        dataGrid.addColumn(firstNameColumn, "Column 1");
+    @Override
+    public void setTemplateList(List<TemplateModel> models) {
+        List<TemplateModel> templateList = dataProvider.getList();
+        for (TemplateModel patient : models) {
+            templateList.add(patient);
+        }
+    }
 
-        Column<ContactInfo, String> addressColumn =
-                new Column<ContactInfo, String>(new EditTextCell()) {
+    private void initTableColumns() {
+        Column<TemplateModel, String> firstNameColumn =
+                new Column<TemplateModel, String>(new TextCell()) {
                     @Override
-                    public String getValue(ContactInfo object) {
-                        return object.getDateOfBirth();
+                    public String getValue(TemplateModel object) {
+                        return object.getName();
                     }
                 };
-        dataGrid.addColumn(addressColumn, "Column 2");
+        dataGrid.addColumn(firstNameColumn, "Template Name");
+
+//        Column<PatientModel, String> addressColumn =
+//                new Column<PatientModel, String>(new EditTextCell()) {
+//                    @Override
+//                    public String getValue(PatientModel object) {
+//                        return object.getDateOfBirth();
+//                    }
+//                };
+//        dataGrid.addColumn(addressColumn, "Column 2");
     }
 }

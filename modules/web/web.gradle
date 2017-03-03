@@ -7,21 +7,25 @@ configurations {
 
 ext.gwtVersion = '2.8.0'
 ext.gwtpVersion = '1.6'
-ext.gwtbootstrap3Version = '0.9.3'
 
 dependencies {
+
+    compile project(':echodata-service')
+
     testCompile group: 'junit', name: 'junit', version: '4.11'
 
     compile "com.google.gwt:gwt-user:$gwtVersion",
             "com.google.gwt:gwt-dev:$gwtVersion",
             "com.gwtplatform:gwtp-mvp-client:$gwtpVersion",
-            "org.gwtbootstrap3:gwtbootstrap3:$gwtbootstrap3Version"
+            "com.gwtplatform:gwtp-dispatch-rpc-client:$gwtpVersion",
+            "com.gwtplatform:gwtp-dispatch-rpc-server-spring:$gwtpVersion"
 
 
     gwtCompile "com.google.gwt:gwt-user:$gwtVersion",
             "com.google.gwt:gwt-dev:$gwtVersion",
             "com.gwtplatform:gwtp-mvp-client:$gwtpVersion",
-            "org.gwtbootstrap3:gwtbootstrap3:$gwtbootstrap3Version"
+            "com.gwtplatform:gwtp-dispatch-rpc-client:$gwtpVersion",
+            "com.gwtplatform:gwtp-dispatch-rpc-server-spring:$gwtpVersion"
 }
 
 sourceSets {
@@ -41,7 +45,9 @@ task compileGwt(dependsOn: classes, type: JavaExec) {
         [
                 sourceSets.main.java.srcDirs,
                 sourceSets.main.output.resourcesDir,
-                sourceSets.main.output.classesDir
+                sourceSets.main.output.classesDir,
+
+                project(':echodata-service').sourceSets.main.java.srcDirs
         ] + configurations.gwtCompile
     }
 
@@ -88,35 +94,35 @@ task gwtDevMode(type: JavaExec) {
 
 
 task inplace << {
-//    List<File> webInfLibFiles = []
-//    configurations.compile.each { libFile ->
-//        if (!configurations.providedCompile.contains(libFile) && !configurations.providedRuntime.contains(libFile)) {
-//            webInfLibFiles.add(libFile)
-//        }
-//    }
+    List<File> webInfLibFiles = []
+    configurations.compile.each { libFile ->
+        if (!configurations.providedCompile.contains(libFile) && !configurations.providedRuntime.contains(libFile)) {
+            webInfLibFiles.add(libFile)
+        }
+    }
 
     def webappDir = new File(projectDir, 'src/main/webapp')
-//    def classesDir = new File(webappDir, 'WEB-INF/classes')
-//    def libDir = new File(webappDir, 'WEB-INF/lib')
-//    classesDir.mkdir()
-//    libDir.mkdir()
+    def classesDir = new File(webappDir, 'WEB-INF/classes')
+    def libDir = new File(webappDir, 'WEB-INF/lib')
+    classesDir.mkdir()
+    libDir.mkdir()
 
-//    task copyLibs(type: Copy) {
-//        from webInfLibFiles
-//        into libDir
-//    }
-//    task copyClasses(type: Copy) {
-//        from sourceSets.main.output.classesDir
-//        from sourceSets.main.output.resourcesDir
-//        into classesDir
-//    }
+    task copyLibs(type: Copy) {
+        from webInfLibFiles
+        into libDir
+    }
+    task copyClasses(type: Copy) {
+        from sourceSets.main.output.classesDir
+        from sourceSets.main.output.resourcesDir
+        into classesDir
+    }
     task copyGwt(type: Copy) {
         from gwtBuildDir
         into webappDir
     }
 
-//    copyLibs.execute()
-//    copyClasses.execute()
+    copyLibs.execute()
+    copyClasses.execute()
     copyGwt.execute()
 }
 

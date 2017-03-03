@@ -1,5 +1,6 @@
 def String[] modules = [        
-        'web'
+        'web',
+        'service'
 ]
 
 include modules

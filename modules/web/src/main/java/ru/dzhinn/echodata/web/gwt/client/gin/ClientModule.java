@@ -1,5 +1,6 @@
 package ru.dzhinn.echodata.web.gwt.client.gin;
 
+import com.gwtplatform.dispatch.rpc.client.gin.RpcDispatchAsyncModule;
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import com.gwtplatform.mvp.client.gin.DefaultModule;
 import ru.dzhinn.echodata.web.gwt.client.application.ApplicationModule;
@@ -16,6 +17,8 @@ public class ClientModule extends AbstractPresenterModule {
                 .errorPlace(NameTokens.HOME)
                 .unauthorizedPlace(NameTokens.HOME)
                 .build());
+
+        install(new RpcDispatchAsyncModule());
 
         install(new ApplicationModule());
 

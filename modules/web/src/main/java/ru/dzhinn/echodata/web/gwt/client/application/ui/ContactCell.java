@@ -1,15 +1,16 @@
-package ru.dzhinn.echodata.web.gwt.client.widget.navigation.render;
+package ru.dzhinn.echodata.web.gwt.client.application.ui;
 
 
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
+import ru.dzhinn.echodata.web.gwt.shared.dto.patient.PatientModel;
 
 /**
  * Created by A.Dzhioev on 08.02.2017.
  */
-public class ContactCell extends AbstractCell<ContactInfo> {
+public class ContactCell extends AbstractCell<PatientModel> {
 
     private final String imageHtml;
 
@@ -21,7 +22,7 @@ public class ContactCell extends AbstractCell<ContactInfo> {
 
 
     @Override
-    public void render(Context context, ContactInfo value, SafeHtmlBuilder sb) {
+    public void render(Context context, PatientModel value, SafeHtmlBuilder sb) {
         if (value == null) {
             return;
         }
