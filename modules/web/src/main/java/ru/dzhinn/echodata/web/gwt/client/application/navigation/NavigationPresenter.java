@@ -56,7 +56,7 @@ public class NavigationPresenter extends Presenter<NavigationPresenter.MyView, N
     protected void onBind() {
         super.onBind();
 
-        dispatch.execute(new GetPatientListAction(null), new AsyncCallback<GetPatientListResult>() {
+        dispatch.execute(new GetPatientListAction(1L), new AsyncCallback<GetPatientListResult>() {
             @Override
             public void onFailure(Throwable caught) {
                 Window.alert("hyi");

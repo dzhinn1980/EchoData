@@ -1,7 +1,6 @@
 dependencies {
 
-    compile project(':echodata-dao')
+    compile project(':echodata-persistent-model')
 
     compile "org.springframework:spring-context:$springFrameworkVersion"
-
 }

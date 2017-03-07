@@ -7,6 +7,10 @@
     <!-- <bean/> definitions here -->
 
     <context:annotation-config/>
+
+    <import resource="spring-service.xml"/>
+
+    <context:component-scan base-package="ru.dzhinn.echodata.web.transfer"/>
     <context:component-scan base-package="ru.dzhinn.echodata.web.gwt.server.dispatch"/>
     <context:component-scan
             base-package="com.gwtplatform.dispatch.rpc.server.spring"/>

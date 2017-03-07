@@ -1,3 +1,5 @@
+ext.springFrameworkVersion = '4.3.7.RELEASE'
+
 allprojects {
     apply plugin: 'idea'
 }
