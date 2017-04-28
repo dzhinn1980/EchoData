@@ -1,7 +1,7 @@
 def String[] modules = [
         'persistent-model',
         'dao',
-        'web',
+        'gwt',
         'service'
 ]
 
