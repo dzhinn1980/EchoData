@@ -1,0 +1,27 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
+
+
+
+    <g:LayoutPanel >
+
+        <g:layer top="0px" height="58px">
+            <g:ScrollPanel >
+                <g:TabBar ui:field="tabBar"/>
+
+            </g:ScrollPanel>
+        </g:layer>
+
+        <g:layer top="58px" height="100px" >
+            <g:ScrollPanel ui:field="tabContent"></g:ScrollPanel>
+        </g:layer>
+
+        <g:layer top="158px" bottom="0px">
+            <g:FlowPanel ui:field="tabContentLayoutPanel"/>
+        </g:layer>
+
+    </g:LayoutPanel >
+
+</ui:UiBinder>

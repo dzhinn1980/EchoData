@@ -21,7 +21,7 @@
             </g:customHeader>
 
             <g:SplitLayoutPanel ui:field="splitLayoutPanel" >
-                <g:north size='320'>
+                <g:north size='200'>
                     <g:DockLayoutPanel unit="EM" addStyleNames="{style.bottom_border}">
                         <g:center>
                             <c:DataGrid ui:field='dataGrid' />

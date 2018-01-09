@@ -18,10 +18,10 @@ body {
     color: #FFCC33;
     font-weight: bold;
     font-size: 1.3em;
-    padding: 3px;
+    padding: 10px;
     border-top: 1px solid #E5E5E5;
     border-bottom: 0px;
-    background:  url(/images/images4.png) repeat-x 0px -50px;
+    background:  url(/images/images4.png) repeat-x 0px -60px;
 }
 
 .gwt-SplitLayoutPanel-HDragger {
@@ -33,4 +33,40 @@ body {
     background: url(/images/splitPanelThumb.png) center center no-repeat;
     cursor: row-resize;
 }
+
+.gwt-TabLayoutPanel{
+    border-top: 1px solid #E5E5E5;
+    /*overflow: auto;*/
+}
+
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelTabs {
+    /*border-bottom: 1px solid #4c4c4c;*/
+
+    background:  url(/images/images4.png) repeat-x 0px -65px;
+}
+
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {
+    float: left;
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelTabInner {
+    margin: 0;
+    padding: 5px 13px;
+
+    text-decoration: none;
+    /*cursor: pointer;*/
+    cursor: hand;
+    /*color: black;*/
+
+}
+
+.gwt-TabLayoutPanelTabInner a{
+    text-decoration: none;
+    color: #2878C8;
+}
+
+.gwt-TabBar { border-top: 1px solid #E5E5E5; }
+.gwt-TabBar .gwt-TabBarItem { padding: 5px 13px; }
 

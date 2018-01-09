@@ -5,7 +5,7 @@ configurations {
     gwtCompile
 }
 
-ext.gwtVersion = '2.8.1'
+ext.gwtVersion = '2.8.2'
 ext.gwtpVersion = '1.6'
 
 dependencies {
@@ -25,7 +25,10 @@ dependencies {
             "com.google.gwt:gwt-dev:$gwtVersion",
             "com.gwtplatform:gwtp-mvp-client:$gwtpVersion",
             "com.gwtplatform:gwtp-dispatch-rpc-client:$gwtpVersion",
-            "com.gwtplatform:gwtp-dispatch-rpc-server-spring:$gwtpVersion"
+            "com.gwtplatform:gwtp-dispatch-rpc-server-spring:$gwtpVersion",
+            'com.github.gwtbootstrap:gwt-bootstrap:2.3.2.0'
+
+    compile 'com.github.gwtbootstrap:gwt-bootstrap:2.3.2.0'
 }
 
 sourceSets {

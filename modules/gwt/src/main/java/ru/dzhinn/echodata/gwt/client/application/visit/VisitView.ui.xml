@@ -14,40 +14,12 @@
         }
     </ui:style>
 
-    <g:StackLayoutPanel unit='EM'>
-        <g:stack>
-            <g:customHeader size='3'>
-                <g:Label text="Список"/>
-            </g:customHeader>
+    <g:FlowPanel>
+        <g:Label ui:field="headerLabel"/>
+        <!--<g:Label>VisitView</g:Label>-->
+        <!--<c:DataGrid ui:field='dataGrid' />-->
+        <!--<c:SimplePager ui:field='pager' />-->
+    </g:FlowPanel>
 
-            <g:SplitLayoutPanel ui:field="splitLayoutPanel" >
-                <g:north size='320'>
-                    <g:DockLayoutPanel unit="EM" addStyleNames="{style.bottom_border}">
-                        <g:center>
-                            <c:DataGrid ui:field='dataGrid' />
-                        </g:center>
 
-                        <g:south size="3">
-                            <g:HTMLPanel >
-                                <table style="width:100%">
-                                    <tr>
-                                        <td align='center'>
-                                            <c:SimplePager ui:field='pager' />
-                                        </td>
-                                    </tr>
-                                </table>
-                            </g:HTMLPanel>
-                        </g:south>
-                    </g:DockLayoutPanel>
-                </g:north>
-
-                <g:center>
-                    <g:ScrollPanel addStyleNames="{style.top_border}">
-                        <g:Label>Podr</g:Label>
-                    </g:ScrollPanel>
-
-                </g:center>
-            </g:SplitLayoutPanel>
-        </g:stack>
-    </g:StackLayoutPanel>
 </ui:UiBinder>

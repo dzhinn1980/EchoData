@@ -7,9 +7,13 @@ import com.gwtplatform.dispatch.shared.ActionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.dzhinn.echodata.gwt.shared.dispatch.patient.GetPatientListAction;
+import ru.dzhinn.echodata.gwt.shared.dto.patient.PatientModel;
+import ru.dzhinn.echodata.persistent.model.patient.Patient;
 import ru.dzhinn.echodata.service.patient.PatientService;
 import ru.dzhinn.echodata.gwt.shared.dispatch.patient.GetPatientListResult;
 import ru.dzhinn.echodata.gwt.server.transfer.patient.PatientTransferService;
+
+import java.util.List;
 
 @Component
 public class GetPatientListActionHandler implements ActionHandler<GetPatientListAction, GetPatientListResult> {

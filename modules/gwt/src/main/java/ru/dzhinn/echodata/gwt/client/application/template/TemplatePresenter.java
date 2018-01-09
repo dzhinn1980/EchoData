@@ -11,7 +11,7 @@ import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
-import ru.dzhinn.echodata.gwt.client.application.ApplicationPresenter;
+import ru.dzhinn.echodata.gwt.client.application.test.TabsPresenter;
 import ru.dzhinn.echodata.gwt.client.place.NameTokens;
 import ru.dzhinn.echodata.gwt.shared.dispatch.template.GetTemplateModelListAction;
 import ru.dzhinn.echodata.gwt.shared.dispatch.template.GetTemplateModelListResult;
@@ -37,7 +37,7 @@ public class TemplatePresenter extends Presenter<TemplatePresenter.MyView, Templ
             EventBus eventBus,
             MyView view,
             MyProxy proxy) {
-        super(eventBus, view, proxy, ApplicationPresenter.SLOT_CONTENT);
+        super(eventBus, view, proxy, TabsPresenter.SLOT_CONTENT);
 
         getView().setUiHandlers(this);
     }

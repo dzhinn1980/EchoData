@@ -5,9 +5,9 @@ package ru.dzhinn.echodata.gwt.client.place;
  */
 public class NameTokens {
     public static final String HOME = "/";
-    public static final String TEMPLATE_LIST = "template-list";
     public static final String TEMPLATE = "template";
 
-
     public static final String VISIT = "visit";
+
+    public static final String TABS = "tabs";
 }

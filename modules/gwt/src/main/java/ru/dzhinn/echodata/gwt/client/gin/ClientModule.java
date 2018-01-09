@@ -19,6 +19,7 @@ public class ClientModule extends AbstractPresenterModule {
                 .build());
 
         install(new RpcDispatchAsyncModule());
+//        install(new GinFactoryModuleBuilder().build(TabFactory.class));
 
         install(new ApplicationModule());
 

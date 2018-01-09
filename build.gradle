@@ -7,6 +7,12 @@ allprojects {
 subprojects {
     apply plugin: 'java'
 
+    [compileJava, compileTestJava].options.collect {options ->
+        configure(options) {
+            encoding = 'utf-8'
+        }
+    }
+
     repositories {
         mavenCentral()
     }

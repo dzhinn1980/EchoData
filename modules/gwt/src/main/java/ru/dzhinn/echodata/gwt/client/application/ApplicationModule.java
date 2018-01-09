@@ -4,13 +4,14 @@ import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import ru.dzhinn.echodata.gwt.client.application.home.HomeModule;
 import ru.dzhinn.echodata.gwt.client.application.navigation.NavigationModule;
 import ru.dzhinn.echodata.gwt.client.application.template.TemplateModule;
+import ru.dzhinn.echodata.gwt.client.application.test.TabsModule;
 import ru.dzhinn.echodata.gwt.client.application.visit.VisitModule;
 
 public class ApplicationModule extends AbstractPresenterModule {
     @Override
     protected void configure() {
 
-//        install(new VisitModule());
+        install(new TabsModule());
         install(new VisitModule());
         install(new TemplateModule());
         install(new NavigationModule());

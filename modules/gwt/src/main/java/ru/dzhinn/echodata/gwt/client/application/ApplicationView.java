@@ -21,6 +21,10 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
     LayoutPanel navigationPanel;
     @UiField
     LayoutPanel contentPanel;
+    @UiField
+    LayoutPanel eastPanel;
+//    @UiField
+//    LayoutPanel tabsContentPanel;
 
     @UiFactory
     SplitLayoutPanel setSplitterSize() {
@@ -33,6 +37,9 @@ public class ApplicationView extends ViewImpl implements ApplicationPresenter.My
         initWidget(uiBinder.createAndBindUi(this));
 
         bindSlot(ApplicationPresenter.SLOT_NAVIGATION, navigationPanel);
+        bindSlot(ApplicationPresenter.SLOT_TEST, eastPanel);
+
+//        tabsPanel.add(new Label("tabsPanel"));
         bindSlot(ApplicationPresenter.SLOT_CONTENT, contentPanel);
     }
 

@@ -12,11 +12,12 @@ public class PatientDAO {
 
     public List<Patient> getPatientList(Long userId) {
         List<Patient> result = new ArrayList<>();
-        Patient patient;
+//        Patient patient;
         for (int i = 0; i < 20; i++){
-            patient = new Patient();
+            Patient patient = new Patient();
             patient.setId((long) i);
-            patient.setFullName("Familia Imia Otchestvo" + userId);
+            String fullName = "Familia Imia Otchestvo" + i;
+            patient.setFullName(fullName);
             patient.setDateOfBirth(new Date(userId + i));
             result.add(patient);
         }

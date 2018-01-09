@@ -31,13 +31,29 @@
         <g:center>
             <g:SplitLayoutPanel >
 
-                <g:west size='400' >
+                <g:west size='300' >
                     <g:LayoutPanel ui:field="navigationPanel" addStyleNames="{style.right_border}"/>
                 </g:west>
 
                 <g:center>
+
+                    <!--<g:ScrollPanel>-->
+                        <!--<g:FlowPanel ui:field='contentPanel' addStyleNames="{style.left_border}"/>-->
                     <g:LayoutPanel ui:field='contentPanel' addStyleNames="{style.left_border}"/>
+                    <!--</g:ScrollPanel>-->
                 </g:center>
+
+                <g:east size="300">
+                    <g:LayoutPanel ui:field='eastPanel' addStyleNames="{style.left_border}"/>
+                    <!--<g:SplitLayoutPanel>-->
+                        <!--<g:north size="200">-->
+                            <!--<g:LayoutPanel ui:field='tabsPanel' addStyleNames="{style.left_border}"/>-->
+                        <!--</g:north>-->
+                        <!--<g:center>-->
+                            <!--<g:LayoutPanel ui:field='tabsContentPanel' addStyleNames="{style.left_border}"/>-->
+                        <!--</g:center>-->
+                    <!--</g:SplitLayoutPanel>-->
+                </g:east>
             </g:SplitLayoutPanel>
         </g:center>
     </g:DockLayoutPanel>
