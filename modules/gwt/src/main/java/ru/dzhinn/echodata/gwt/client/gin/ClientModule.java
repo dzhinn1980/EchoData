@@ -14,8 +14,8 @@ public class ClientModule extends AbstractPresenterModule {
     protected void configure() {
         install(new DefaultModule.Builder()
                 .defaultPlace(NameTokens.HOME)
-                .errorPlace(NameTokens.HOME)
-                .unauthorizedPlace(NameTokens.HOME)
+                .errorPlace(NameTokens.TABS)
+                .unauthorizedPlace(NameTokens.TABS)
                 .build());
 
         install(new RpcDispatchAsyncModule());

@@ -1,4 +1,4 @@
-package ru.dzhinn.echodata.gwt.client.application.ui.tab;
+package ru.dzhinn.echodata.gwt.client.application.test;
 
 /**
  * Created by A.Dzhioev on 13.12.2017.

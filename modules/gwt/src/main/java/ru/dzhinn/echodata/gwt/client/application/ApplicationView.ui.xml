@@ -18,14 +18,17 @@
 
         .topBackground{
             /*background:  url(/images/logo_background.png) repeat-y center 0px;*/
-            background:  url(/images/onlinelogomaker-022017-1721-1868.png) no-repeat  center;
+            /*background:  url(/images/onlinelogomaker-022017-1721-1868.png) no-repeat  center;*/
+            text-align: center;
         }
     </ui:style>
 
 
     <g:DockLayoutPanel unit='EM' addStyleNames="{style.left_padding}">
         <g:north size='8'>
-            <g:FlowPanel ui:field='topPanel' addStyleNames="{style.topBackground}"/>
+            <g:FlowPanel  addStyleNames="{style.topBackground}" >
+                <g:Image ui:field="logoImage" url="/images/onlinelogomaker-022017-1721-1868.png" />
+            </g:FlowPanel>
         </g:north>
 
         <g:center>
@@ -36,23 +39,12 @@
                 </g:west>
 
                 <g:center>
-
-                    <!--<g:ScrollPanel>-->
-                        <!--<g:FlowPanel ui:field='contentPanel' addStyleNames="{style.left_border}"/>-->
                     <g:LayoutPanel ui:field='contentPanel' addStyleNames="{style.left_border}"/>
-                    <!--</g:ScrollPanel>-->
                 </g:center>
 
                 <g:east size="300">
                     <g:LayoutPanel ui:field='eastPanel' addStyleNames="{style.left_border}"/>
-                    <!--<g:SplitLayoutPanel>-->
-                        <!--<g:north size="200">-->
-                            <!--<g:LayoutPanel ui:field='tabsPanel' addStyleNames="{style.left_border}"/>-->
-                        <!--</g:north>-->
-                        <!--<g:center>-->
-                            <!--<g:LayoutPanel ui:field='tabsContentPanel' addStyleNames="{style.left_border}"/>-->
-                        <!--</g:center>-->
-                    <!--</g:SplitLayoutPanel>-->
+
                 </g:east>
             </g:SplitLayoutPanel>
         </g:center>

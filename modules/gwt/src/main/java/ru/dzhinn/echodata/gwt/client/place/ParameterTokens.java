@@ -7,4 +7,6 @@ public class ParameterTokens {
     public static final String TEMPLATE_CATEGORY_ID = "template-category-id";
 
     public static final String PATIENT_ID = "patient-id";
+
+    public static final String TAB_VISIT = "tab-visit-";
 }

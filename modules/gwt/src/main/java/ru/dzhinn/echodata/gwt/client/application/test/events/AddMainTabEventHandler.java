@@ -1,4 +1,4 @@
-package ru.dzhinn.echodata.gwt.client.application.ui.tab.events;
+package ru.dzhinn.echodata.gwt.client.application.test.events;
 
 import com.google.gwt.event.shared.EventHandler;
 

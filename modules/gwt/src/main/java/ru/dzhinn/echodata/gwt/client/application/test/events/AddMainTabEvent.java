@@ -1,7 +1,7 @@
-package ru.dzhinn.echodata.gwt.client.application.ui.tab.events;
+package ru.dzhinn.echodata.gwt.client.application.test.events;
 
 import com.google.gwt.event.shared.GwtEvent;
-import ru.dzhinn.echodata.gwt.client.application.ui.tab.TabInfo;
+import ru.dzhinn.echodata.gwt.client.application.test.TabInfo;
 
 /**
  * Created by A.Dzhioev on 13.12.2017.

@@ -5,11 +5,9 @@ import com.google.gwt.event.logical.shared.SelectionEvent;
 import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
-import ru.dzhinn.echodata.gwt.client.application.ui.tab.TabInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +82,7 @@ public class TabsView extends ViewWithUiHandlers<TabsUiHandlers> implements Tabs
 
     @Override
     public void resetTabs() {
-        Window.alert("TabsView.resetTabs: tabInfoList.size = " + tabInfoList.size());
+
 //        if (tabInfoListcurrentTab != null);
 //        for (TabInfo tabInfo : tabInfoList){
 //            addTab(tabInfo);
