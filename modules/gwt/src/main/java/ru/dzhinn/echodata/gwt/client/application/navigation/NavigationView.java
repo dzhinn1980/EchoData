@@ -10,6 +10,7 @@ import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.view.client.*;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
+import ru.dzhinn.echodata.gwt.client.application.navigation.model.TemplateTreeModel;
 import ru.dzhinn.echodata.gwt.client.application.ui.ContactCell;
 import ru.dzhinn.echodata.gwt.client.resources.AppResources;
 import ru.dzhinn.echodata.gwt.client.resources.celllist.CellListResources;
@@ -17,6 +18,7 @@ import ru.dzhinn.echodata.gwt.client.resources.celltree.CellTreeResources;
 import ru.dzhinn.echodata.gwt.shared.dto.patient.PatientModel;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,7 +33,7 @@ public class NavigationView extends ViewWithUiHandlers<NavigationUiHandlers> imp
     @UiField
     ScrollPanel templateListPanel;
 
-    final SingleSelectionModel<String> selectionModel = new SingleSelectionModel<String>();
+//    final SingleSelectionModel<String> selectionModel = new SingleSelectionModel<String>();
 
     ProvidesKey<PatientModel> keyProvider = new ProvidesKey<PatientModel>() {
         @Override
@@ -79,7 +81,9 @@ public class NavigationView extends ViewWithUiHandlers<NavigationUiHandlers> imp
 
     void setTemplateCellTree(){
 
-        CellTree tree = new CellTree(new TreeViewModel() {
+        TemplateViewModel model = new TemplateViewModel(getTemplateList());
+
+        CellTree tree = new CellTree(/*new TreeViewModel() {
 
             @Override
             public <T> NodeInfo<?> getNodeInfo(T value) {
@@ -94,22 +98,35 @@ public class NavigationView extends ViewWithUiHandlers<NavigationUiHandlers> imp
             public boolean isLeaf(Object value) {
                 return value.toString().length() > 16;
             }
-        }, "Структура 1", cellTreeResources);
+        }*/ model, "Структура 1", cellTreeResources);
 
 //        tree.setKeyboardSelectionPolicy(HasKeyboardSelectionPolicy.KeyboardSelectionPolicy.ENABLED);
 
-        selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-            @Override
-            public void onSelectionChange(SelectionChangeEvent event) {
-                String selected = selectionModel.getSelectedObject();
-                if (selected != null) {
-                        getUiHandlers().onTemplateSelectionChange(selected);
-                }
-
-            }
-        });
+//        model.selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+//            @Override
+//            public void onSelectionChange(SelectionChangeEvent event) {
+//                String selected = model.selectionModel.getSelectedObject();
+//                if (selected != null) {
+//                        getUiHandlers().onTemplateSelectionChange(selected);
+//                }
+//
+//            }
+//        });
 
         tree.setAnimationEnabled(true);
         templateListPanel.add(tree);
+    }
+
+    private List<TemplateTreeModel> getTemplateList(){
+        List<TemplateTreeModel> result = new ArrayList<>();
+
+        TemplateTreeModel head = new TemplateTreeModel("Head");
+
+        head.setChild(new ArrayList<TemplateTreeModel>());
+
+        for (int i = 0; i < 7; i++){
+            head.getChild().add(new TemplateTreeModel("First Level Element №" + (i + 1)));
+        }
+        return result;
     }
 }
