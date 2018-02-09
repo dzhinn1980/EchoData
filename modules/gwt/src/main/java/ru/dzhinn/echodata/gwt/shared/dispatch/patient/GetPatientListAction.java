@@ -1,6 +1,5 @@
 package ru.dzhinn.echodata.gwt.shared.dispatch.patient;
 
-import com.gwtplatform.dispatch.rpc.shared.ActionImpl;
 import com.gwtplatform.dispatch.rpc.shared.UnsecuredActionImpl;
 
 /**

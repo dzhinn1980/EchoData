@@ -6,7 +6,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.cellview.client.CellTree;
-import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.view.client.*;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
@@ -48,6 +47,8 @@ public class NavigationView extends ViewWithUiHandlers<NavigationUiHandlers> imp
 //    @Inject
     CellListResources cellListResources;
 
+    List<TemplateTreeModel> highLevelTemplateList = new ArrayList<>();
+
     @Inject
     NavigationView(Binder uiBinder, AppResources appResources, CellTreeResources cellTreeResources, CellListResources cellListResources) {
         this.appResources = appResources;
@@ -79,26 +80,16 @@ public class NavigationView extends ViewWithUiHandlers<NavigationUiHandlers> imp
         cellList.setRowData(0, models);
     }
 
+    @Override
+    public void setHighLevelTemplateList(List<TemplateTreeModel> models) {
+        highLevelTemplateList = models;
+    }
+
     void setTemplateCellTree(){
 
-        TemplateViewModel model = new TemplateViewModel(getTemplateList());
+        TemplateTreeViewModel model = new TemplateTreeViewModel(highLevelTemplateList);
 
-        CellTree tree = new CellTree(/*new TreeViewModel() {
-
-            @Override
-            public <T> NodeInfo<?> getNodeInfo(T value) {
-                ListDataProvider<String> dataProvider = new ListDataProvider<String>();
-                for (int i = 0; i < 10; i++) {
-                    dataProvider.getList().add(value + "." + String.valueOf(i));
-                }
-                return new DefaultNodeInfo<String>(dataProvider, new TextCell(), selectionModel, null);
-            }
-
-            @Override
-            public boolean isLeaf(Object value) {
-                return value.toString().length() > 16;
-            }
-        }*/ model, "Структура 1", cellTreeResources);
+        CellTree tree = new CellTree( model, null, cellTreeResources);
 
 //        tree.setKeyboardSelectionPolicy(HasKeyboardSelectionPolicy.KeyboardSelectionPolicy.ENABLED);
 

@@ -1,14 +1,18 @@
 package ru.dzhinn.echodata.gwt.client.application.navigation.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by A.Dzhioev on 11.01.2018.
  */
-public class TemplateTreeModel {
+public class TemplateTreeModel implements Serializable {
 
     private String name;
     private List<TemplateTreeModel> child;
+
+    public TemplateTreeModel() {
+    }
 
     public TemplateTreeModel(String name) {
         this.name = name;

@@ -7,8 +7,10 @@ import com.gwtplatform.dispatch.rpc.server.spring.configuration.DefaultModule;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import ru.dzhinn.echodata.gwt.server.dispatch.template.GetChildTemplateListActionHandler;
 import ru.dzhinn.echodata.gwt.server.dispatch.template.GetTemplateModelListActionHandler;
 import ru.dzhinn.echodata.gwt.shared.dispatch.patient.GetPatientListAction;
+import ru.dzhinn.echodata.gwt.shared.dispatch.template.GetChildTemplateListAction;
 import ru.dzhinn.echodata.gwt.shared.dispatch.visit.GetVisitModelListAction;
 import ru.dzhinn.echodata.gwt.server.dispatch.patient.GetPatientListActionHandler;
 import ru.dzhinn.echodata.gwt.server.dispatch.visit.GetVisitModelListActionHandler;
@@ -31,7 +33,10 @@ public class ServerModule extends HandlerModule {
         bindHandler(GetPatientListAction.class, GetPatientListActionHandler.class);
 
         bindHandler(GetTemplateModelListAction.class, GetTemplateModelListActionHandler.class);
+        bindHandler(GetChildTemplateListAction.class, GetChildTemplateListActionHandler.class);
 
         bindHandler(GetVisitModelListAction.class, GetVisitModelListActionHandler.class);
+
+
     }
 }
