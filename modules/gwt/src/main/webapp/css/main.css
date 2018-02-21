@@ -34,39 +34,58 @@ body {
     cursor: row-resize;
 }
 
-.gwt-TabLayoutPanel{
+/*.gwt-TabLayoutPanel{*/
+    /*border-top: 1px solid #E5E5E5;*/
+    /*!*overflow: auto;*!*/
+/*}*/
+
+/*.gwt-TabBar  {*/
+    /*!*border-bottom: 1px solid #4c4c4c;*!*/
+
+    /*background:  url(/images/images4.png) repeat-x 0px -65px;*/
+/*}*/
+
+/*.gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {*/
+    /*float: left;*/
+    /*margin-right: 8px;*/
+    /*font-weight: bold;*/
+/*}*/
+
+/*.gwt-TabLayoutPanel .gwt-TabLayoutPanelTabInner {*/
+    /*margin: 0;*/
+    /*padding: 5px 13px;*/
+
+    /*text-decoration: none;*/
+    /*!*cursor: pointer;*!*/
+    /*cursor: hand;*/
+    /*!*color: black;*!*/
+
+/*}*/
+
+/*.gwt-TabLayoutPanelTabInner a{*/
+    /*text-decoration: none;*/
+    /*color: #2878C8;*/
+/*}*/
+
+.gwt-TabBar {
     border-top: 1px solid #E5E5E5;
-    /*overflow: auto;*/
-}
-
-.gwt-TabLayoutPanel .gwt-TabLayoutPanelTabs {
-    /*border-bottom: 1px solid #4c4c4c;*/
-
+    border-bottom: 1px solid #E5E5E5;
+    /*margin-bottom: 8px;*/
+    /*padding-bottom: 8px;*/
+    padding: 8px;
     background:  url(/images/images4.png) repeat-x 0px -65px;
 }
-
-.gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {
-    float: left;
-    margin-right: 8px;
-    font-weight: bold;
-}
-
-.gwt-TabLayoutPanel .gwt-TabLayoutPanelTabInner {
-    margin: 0;
+.gwt-TabBar .gwt-TabBarItem {
     padding: 5px 13px;
-
-    text-decoration: none;
-    /*cursor: pointer;*/
-    cursor: hand;
-    /*color: black;*/
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    white-space: nowrap;
 
 }
 
-.gwt-TabLayoutPanelTabInner a{
-    text-decoration: none;
-    color: #2878C8;
+.gwt-TabBar .gwt-TabBarItem-selected{
+    font-weight: bold;
+    border: none;
 }
-
-.gwt-TabBar { border-top: 1px solid #E5E5E5; }
-.gwt-TabBar .gwt-TabBarItem { padding: 5px 13px; }
 

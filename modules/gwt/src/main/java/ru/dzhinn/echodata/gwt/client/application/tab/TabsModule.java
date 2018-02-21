@@ -1,5 +1,5 @@
 
-package ru.dzhinn.echodata.gwt.client.application.test;
+package ru.dzhinn.echodata.gwt.client.application.tab;
 
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 

@@ -47,7 +47,7 @@ public class NavigationView extends ViewWithUiHandlers<NavigationUiHandlers> imp
 //    @Inject
     CellListResources cellListResources;
 
-    List<TemplateTreeModel> highLevelTemplateList = new ArrayList<>();
+    TemplateTreeViewModel model;
 
     @Inject
     NavigationView(Binder uiBinder, AppResources appResources, CellTreeResources cellTreeResources, CellListResources cellListResources) {
@@ -70,8 +70,6 @@ public class NavigationView extends ViewWithUiHandlers<NavigationUiHandlers> imp
         });
 
         patientListPanel.add(cellList);
-
-        setTemplateCellTree();
     }
 
     @Override
@@ -80,44 +78,29 @@ public class NavigationView extends ViewWithUiHandlers<NavigationUiHandlers> imp
         cellList.setRowData(0, models);
     }
 
-    @Override
-    public void setHighLevelTemplateList(List<TemplateTreeModel> models) {
-        highLevelTemplateList = models;
-    }
+    public void initTemplateCellTree(List<TemplateTreeModel> highLevelTemplateList){
 
-    void setTemplateCellTree(){
+        ProvidesKey<TemplateTreeModel> keyProvider = new ProvidesKey<TemplateTreeModel>() {
+            @Override
+            public Object getKey(TemplateTreeModel item) {
+                return item.getId();
+            }
+        };
 
-        TemplateTreeViewModel model = new TemplateTreeViewModel(highLevelTemplateList);
+        SingleSelectionModel<TemplateTreeModel> templateSelectionModel = new SingleSelectionModel<>(keyProvider);
+        templateSelectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
+            @Override
+            public void onSelectionChange(SelectionChangeEvent event) {
+                TemplateTreeModel model = templateSelectionModel.getSelectedObject();
+                getUiHandlers().onTemplateSelectionChange(model);
+            }
+        });
 
-        CellTree tree = new CellTree( model, null, cellTreeResources);
+        model = new TemplateTreeViewModel(highLevelTemplateList, templateSelectionModel);
 
-//        tree.setKeyboardSelectionPolicy(HasKeyboardSelectionPolicy.KeyboardSelectionPolicy.ENABLED);
-
-//        model.selectionModel.addSelectionChangeHandler(new SelectionChangeEvent.Handler() {
-//            @Override
-//            public void onSelectionChange(SelectionChangeEvent event) {
-//                String selected = model.selectionModel.getSelectedObject();
-//                if (selected != null) {
-//                        getUiHandlers().onTemplateSelectionChange(selected);
-//                }
-//
-//            }
-//        });
+        CellTree tree = new CellTree(model, null, cellTreeResources);
 
         tree.setAnimationEnabled(true);
         templateListPanel.add(tree);
-    }
-
-    private List<TemplateTreeModel> getTemplateList(){
-        List<TemplateTreeModel> result = new ArrayList<>();
-
-        TemplateTreeModel head = new TemplateTreeModel("Head");
-
-        head.setChild(new ArrayList<TemplateTreeModel>());
-
-        for (int i = 0; i < 7; i++){
-            head.getChild().add(new TemplateTreeModel("First Level Element №" + (i + 1)));
-        }
-        return result;
     }
 }

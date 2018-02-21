@@ -55,4 +55,9 @@ public class ApplicationView extends ViewWithUiHandlers<ApplicationUiHandlers> i
         });
     }
 
+    @Override
+    public void clearTabs() {
+        contentPanel.clear();
+        bindSlot(ApplicationPresenter.SLOT_CONTENT, contentPanel);
+    }
 }

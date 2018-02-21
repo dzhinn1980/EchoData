@@ -1,5 +1,5 @@
 
-package ru.dzhinn.echodata.gwt.client.application.test;
+package ru.dzhinn.echodata.gwt.client.application.tab;
 
 import com.google.inject.Inject;
 import com.google.web.bindery.event.shared.EventBus;
@@ -13,17 +13,15 @@ import com.gwtplatform.mvp.client.proxy.Proxy;
 import com.gwtplatform.mvp.client.proxy.RevealContentEvent;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 import ru.dzhinn.echodata.gwt.client.application.ApplicationPresenter;
-import ru.dzhinn.echodata.gwt.client.application.test.events.AddMainTabEvent;
-import ru.dzhinn.echodata.gwt.client.application.test.events.AddMainTabEventHandler;
+import ru.dzhinn.echodata.gwt.client.application.events.ClearTabsEvent;
+import ru.dzhinn.echodata.gwt.client.application.tab.events.AddMainTabEvent;
+import ru.dzhinn.echodata.gwt.client.application.tab.events.AddMainTabEventHandler;
 import ru.dzhinn.echodata.gwt.client.place.NameTokens;
 import ru.dzhinn.echodata.gwt.client.place.ParameterTokens;
 
 public class TabsPresenter extends Presenter<TabsPresenter.MyView, TabsPresenter.MyProxy> implements TabsUiHandlers {
     interface MyView extends View, HasUiHandlers<TabsUiHandlers> {
-//        void addTab(String tabLabel);
-//        void selectTab(int index);
         void activateTab(TabInfo tabInfo);
-        void resetTabs();
     }
 
 //    @NameToken(NameTokens.TABS)
@@ -51,9 +49,6 @@ public class TabsPresenter extends Presenter<TabsPresenter.MyView, TabsPresenter
     @Override
     protected void onReset() {
         super.onReset();
-
-//        Window.alert("TabsPresenter.onReset");
-
     }
 
 
@@ -61,19 +56,22 @@ public class TabsPresenter extends Presenter<TabsPresenter.MyView, TabsPresenter
     protected void onBind() {
         super.onBind();
 
-//        Window.alert("TabsPresenter.onBind");
-
         PlaceRequest request = placeManager.getCurrentPlaceRequest();
 
+        boolean hasTabs = false;
         for (String paramName : request.getParameterNames()){
             if (paramName.contains("tab-")){
-
-                getView().activateTab(new TabInfo(NameTokens.VISIT, ParameterTokens.PATIENT_ID, request.getParameter(paramName, null)));
+                getView().activateTab(TabInfo.getTabInfoByParamName(paramName, request.getParameter(paramName, null)));
+                if (!hasTabs) {
+                    hasTabs = true;
+                }
             }
         }
 
-
-        getView().resetTabs();
+        if (hasTabs) {
+            TabTypeEnum tabType = TabTypeEnum.byToken(request.getNameToken());
+            getView().activateTab(new TabInfo(tabType, request.getParameter(ParameterTokens.CURRENT_ID, null)));
+        }
 
         addRegisteredHandler(AddMainTabEvent.TYPE, new AddMainTabEventHandler() {
             @Override
@@ -87,9 +85,24 @@ public class TabsPresenter extends Presenter<TabsPresenter.MyView, TabsPresenter
 
     public void showTabContent(TabInfo tabInfo){
         placeManager.revealPlace(new PlaceRequest.Builder(placeManager.getCurrentPlaceRequest()).nameToken(tabInfo.getToken())
-                .with(tabInfo.getTokenParam(), tabInfo.getTokenParamValue())
-                .with(ParameterTokens.TAB_VISIT + tabInfo.getTokenParamValue(), tabInfo.getTokenParamValue())
+                .with(ParameterTokens.CURRENT_ID, tabInfo.getTabParamValue())
+                .with(tabInfo.getTabParam() + tabInfo.getTabParamValue(), tabInfo.getTabParamValue())
                 .build());
+    }
+
+    @Override
+    public void onRemoveTab(TabInfo tabForDelete, TabInfo currentTab) {
+        placeManager.revealPlace(new PlaceRequest.Builder(placeManager.getCurrentPlaceRequest())
+                .nameToken(currentTab.getToken())
+                .with(ParameterTokens.CURRENT_ID, currentTab.getTabParamValue())
+                .without(tabForDelete.getTabParam() + tabForDelete.getTabParamValue())
+                .build());
+    }
+
+    @Override
+    public void onRemoveLastTab() {
+//        placeManager.revealPlace(new PlaceRequest.Builder().nameToken(NameTokens.HOME).build());
+        fireEvent(new ClearTabsEvent());
     }
 
     @Override

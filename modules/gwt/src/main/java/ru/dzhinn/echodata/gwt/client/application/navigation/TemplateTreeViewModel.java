@@ -6,10 +6,7 @@ import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.view.client.ListDataProvider;
-import com.google.gwt.view.client.SelectionChangeEvent;
-import com.google.gwt.view.client.SingleSelectionModel;
-import com.google.gwt.view.client.TreeViewModel;
+import com.google.gwt.view.client.*;
 import com.google.inject.Inject;
 import com.gwtplatform.dispatch.rpc.shared.DispatchAsync;
 import ru.dzhinn.echodata.gwt.client.application.navigation.model.TemplateTreeModel;
@@ -27,7 +24,18 @@ public class TemplateTreeViewModel implements TreeViewModel{
     @Inject
     private DispatchAsync dispatch;
 
-    List<TemplateTreeModel> highLevelTemplateList = new ArrayList<>();
+    List<TemplateTreeModel> highLevelTemplateList;
+    SingleSelectionModel<TemplateTreeModel> templateSelectionModel;
+
+//    private final DefaultSelectionEventManager<TemplateTreeModel> selectionManager =
+//            DefaultSelectionEventManager.createDefaultManager();
+
+
+
+    public TemplateTreeViewModel(List<TemplateTreeModel> highLevelTemplateList, SingleSelectionModel<TemplateTreeModel> templateSelectionModel) {
+        this.highLevelTemplateList = highLevelTemplateList;
+        this.templateSelectionModel = templateSelectionModel;
+    }
 
     public TemplateTreeViewModel(List<TemplateTreeModel> highLevelTemplateList) {
         this.highLevelTemplateList = highLevelTemplateList;
@@ -49,6 +57,7 @@ public class TemplateTreeViewModel implements TreeViewModel{
 //        });
 //    }
 
+
     private static class CategoryCell extends AbstractCell<TemplateTreeModel> {
 
         /**
@@ -62,7 +71,13 @@ public class TemplateTreeViewModel implements TreeViewModel{
         @Override
         public void render(Context context, TemplateTreeModel value, SafeHtmlBuilder sb) {
             if (value != null) {
-                sb.appendEscaped(value.getName());
+                if (((TemplateTreeModel)value).isFolder()){
+                    sb.appendHtmlConstant("<b>");
+                    sb.appendEscaped(value.getName());
+                    sb.appendHtmlConstant("</b>");
+                } else {
+                    sb.appendEscaped(value.getName());
+                }
             }
         }
     }
@@ -74,25 +89,21 @@ public class TemplateTreeViewModel implements TreeViewModel{
         ListDataProvider<TemplateTreeModel> dataProvider = new ListDataProvider<>();
 
         if (value == null){
-//            for (int i = 0; i < 2; i++) {
-//                dataProvider.getList().add("Top level item : " + (i + 1));
-//            }
             dataProvider.getList().addAll(highLevelTemplateList);
         } else {
-//            for (int i = 0; i < 2; i++) {
-//                dataProvider.getList().add(value + "." + String.valueOf(i));
-//            }
         }
 
+//        return new DefaultNodeInfo<TemplateTreeModel>(dataProvider, new CategoryCell());
 
-        return new DefaultNodeInfo<TemplateTreeModel>(dataProvider, new CategoryCell());
+        return new DefaultNodeInfo<TemplateTreeModel>(dataProvider, new CategoryCell(), templateSelectionModel, null);
     }
 
     @Override
     public boolean isLeaf(Object value) {
         if (value == null) return false;
 
-        if (String.valueOf(value).contains("0")) return true;
-        return (value.toString().length() > 30);
+        if (((TemplateTreeModel)value).isFolder()) return false;
+
+        return true;
     }
 }

@@ -11,8 +11,10 @@ import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
-import ru.dzhinn.echodata.gwt.client.application.test.TabsPresenter;
+import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
+import ru.dzhinn.echodata.gwt.client.application.tab.TabsPresenter;
 import ru.dzhinn.echodata.gwt.client.place.NameTokens;
+import ru.dzhinn.echodata.gwt.client.place.ParameterTokens;
 import ru.dzhinn.echodata.gwt.shared.dispatch.template.GetTemplateModelListAction;
 import ru.dzhinn.echodata.gwt.shared.dispatch.template.GetTemplateModelListResult;
 import ru.dzhinn.echodata.gwt.shared.dto.template.TemplateModel;
@@ -21,6 +23,7 @@ import java.util.List;
 
 public class TemplatePresenter extends Presenter<TemplatePresenter.MyView, TemplatePresenter.MyProxy> implements TemplateUiHandlers {
     interface MyView extends View, HasUiHandlers<TemplateUiHandlers> {
+        void setHeaderText(String text);
         void setTemplateList(List<TemplateModel> models);
     }
 
@@ -57,5 +60,14 @@ public class TemplatePresenter extends Presenter<TemplatePresenter.MyView, Templ
                 getView().setTemplateList(result.getModels());
             }
         });
+    }
+
+    @Override
+    public void prepareFromRequest(PlaceRequest request) {
+        super.prepareFromRequest(request);
+
+        String id = request.getParameter(ParameterTokens.CURRENT_ID, null);
+
+        getView().setHeaderText(id);
     }
 }

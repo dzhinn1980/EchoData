@@ -23,7 +23,7 @@ public class GetChildTemplateListActionHandler implements ActionHandler<GetChild
     public GetChildTemplateListResult execute(GetChildTemplateListAction action, ExecutionContext context) throws ActionException {
         List<TemplateTreeModel> models = new ArrayList<>();
         for (int i = 0; i < 10; i++){
-            models.add(new TemplateTreeModel("Template : " + i));
+            models.add(new TemplateTreeModel(i, "Template : " + i, i%2 == 1 ? true : false));
         }
         return new GetChildTemplateListResult(models);
     }

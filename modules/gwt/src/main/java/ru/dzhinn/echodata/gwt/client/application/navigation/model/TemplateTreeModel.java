@@ -8,19 +8,31 @@ import java.util.List;
  */
 public class TemplateTreeModel implements Serializable {
 
+    private int id;
     private String name;
+    private boolean folder;
     private List<TemplateTreeModel> child;
 
-    public TemplateTreeModel() {
-    }
 
-    public TemplateTreeModel(String name) {
+    TemplateTreeModel() {}
+
+    public TemplateTreeModel(int id, String name, boolean folder) {
+        this.id = id;
         this.name = name;
+        this.folder = folder;
     }
 
     public TemplateTreeModel(String name, List<TemplateTreeModel> child) {
         this.name = name;
         this.child = child;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -29,6 +41,14 @@ public class TemplateTreeModel implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isFolder() {
+        return folder;
+    }
+
+    public void setFolder(boolean folder) {
+        this.folder = folder;
     }
 
     public List<TemplateTreeModel> getChild() {

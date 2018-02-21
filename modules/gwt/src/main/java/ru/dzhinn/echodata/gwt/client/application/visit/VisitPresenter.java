@@ -12,7 +12,7 @@ import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
-import ru.dzhinn.echodata.gwt.client.application.test.TabsPresenter;
+import ru.dzhinn.echodata.gwt.client.application.tab.TabsPresenter;
 import ru.dzhinn.echodata.gwt.client.place.ParameterTokens;
 import ru.dzhinn.echodata.gwt.shared.dispatch.visit.GetVisitModelListAction;
 import ru.dzhinn.echodata.gwt.shared.dto.visit.VisitModel;
@@ -70,7 +70,7 @@ public class VisitPresenter extends Presenter<VisitPresenter.MyView, VisitPresen
     public void prepareFromRequest(PlaceRequest request) {
         super.prepareFromRequest(request);
 
-        String id = request.getParameter(ParameterTokens.PATIENT_ID, null);
+        String id = request.getParameter(ParameterTokens.CURRENT_ID, null);
 
         getView().setHeaderText(id);
 

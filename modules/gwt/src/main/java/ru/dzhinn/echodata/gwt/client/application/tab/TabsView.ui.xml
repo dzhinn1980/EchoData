@@ -5,10 +5,10 @@
 
 
 
-    <g:LayoutPanel >
+    <g:LayoutPanel ui:field="tabsPanel">
 
         <g:layer top="0px" height="58px">
-            <g:ScrollPanel >
+            <g:ScrollPanel ui:field="tabBarScrollPanel">
                 <g:TabBar ui:field="tabBar"/>
 
             </g:ScrollPanel>
